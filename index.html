@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Le Refuge FR | Hub Officiel 2026</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap');
+    :root { --bg: #000000; --nav: #0a0a0b; --card: #141417; --accent: #00a2ff; --text: #ffffff; --sec: #94a3b8; }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; }
+    body { background: var(--bg); color: var(--text); scroll-behavior: smooth; overflow-x: hidden; }
+    nav { position: fixed; top: 0; width: 100%; height: 70px; background: var(--nav); display: flex; align-items: center; justify-content: space-between; padding: 0 8%; z-index: 1000; border-bottom: 2px solid #1e1e20; }
+    .logo { font-weight: 800; font-size: 1.1em; }
+    .nav-links { display: flex; gap: 30px; }
+    .nav-links a { text-decoration: none; color: var(--sec); font-size: 0.85em; font-weight: 600; transition: 0.3s; }
+    .nav-links a:hover { color: var(--accent); }
+    .hero { height: 60vh; background-size: cover; background-position: center; display: flex; align-items: flex-end; position: relative; margin-top: 70px; background-image: linear-gradient(0deg, rgba(0,0,0,1) 10%, transparent 100%), url('https://images-ext-1.discordapp.net/external/XOoAlWeo9TgXIBy9OtXT3jnSFzchnSfbfl70SPs1aE4/%3Fsize%3D1024/https/cdn.discordapp.com/banners/1212456009818177566/9235312417bc581e821c301755e74010.webp?format=webp'); }
+    .hero-content { position: relative; z-index: 2; width: 100%; max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+    .game-title { font-size: clamp(2.2em, 5vw, 3.8em); font-weight: 800; line-height: 1; margin-bottom: 10px; }
+    .status-tag { background: var(--accent); color: #fff; padding: 6px 14px; border-radius: 8px; font-size: 0.75em; font-weight: 700; display: inline-block; margin-bottom: 15px; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+    section { padding: 60px 0; scroll-margin-top: 100px; }
+    h2 { font-size: 1.6em; margin-bottom: 40px; font-weight: 800; display: flex; align-items: center; gap: 20px; }
+    h2::after { content: ""; flex: 1; height: 2px; background: #1e1e20; }
+    .team-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; }
+    .member-card { background: var(--card); padding: 35px 20px; border-radius: 20px; text-align: center; border: 1px solid #222; transition: 0.3s; }
+    .avatar { width: 100px; height: 100px; border-radius: 50%; margin-bottom: 20px; border: 3px solid #1e1e20; object-fit: cover; }
+    .member-role { font-size: 0.7em; font-weight: 800; text-transform: uppercase; color: var(--accent); letter-spacing: 1px; }
+    .dev-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+    .dev-card { background: var(--card); border-radius: 18px; padding: 25px; border: 1px solid #222; }
+    .progress-bar { background: #000; height: 10px; border-radius: 10px; margin-top: 15px; overflow: hidden; }
+    .progress-fill { background: var(--accent); height: 100%; box-shadow: 0 0 10px rgba(0, 162, 255, 0.3); }
+    .recruit-box { background: linear-gradient(145deg, #101012, #000); padding: 60px 40px; border-radius: 30px; text-align: center; border: 1px solid var(--accent); }
+    .recruit-tags { display: flex; justify-content: center; gap: 20px; margin: 30px 0; flex-wrap: wrap; }
+    .tag { border: 1px dashed var(--accent); padding: 12px 20px; border-radius: 10px; font-weight: 800; font-size: 0.8em; background: rgba(0, 162, 255, 0.05); }
+    .btn-discord { background: var(--accent); color: white; text-decoration: none; padding: 18px 40px; border-radius: 12px; font-weight: 800; display: inline-block; transition: 0.3s; }
+    footer { text-align: center; padding: 60px; color: #444; border-top: 1px solid #111; font-size: 0.85em; font-weight: 600; }
+    @media (max-width: 850px) { .team-row { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+<nav><div class="logo">LE REFUGE FR</div><div class="nav-links"><a href="#home">ACCUEIL</a><a href="#infos">INFOS</a><a href="#dev">AVANCEMENT</a><a href="#contact">RECRUTEMENT</a></div></nav>
+<section id="home" class="hero"><div class="hero-content"><div class="status-tag">PHASE FINALE DE DÉVELOPPEMENT</div><h1 class="game-title">🎙️ Le Refuge FR</h1></div></section>
+<div class="container">
+  <section id="infos"><h2>A PROPOS DU JEU</h2><div class="dev-card"><p style="font-size: 1.1em; line-height: 1.8; color: var(--sec);"><b>Le Refuge FR</b> est un espace de rencontre universel sur Roblox. Tout le monde est bienvenu pour se réunir et discuter dans une ambiance chill.</p></div></section>
+  <section id="team"><h2>L'ÉQUIPE CORE</h2><div class="team-row">
+    <div class="member-card"><img src="https://cdn.discordapp.com/avatars/1381381156565549188/f4534591b3663c7b8e8f07167ec8beb6.webp?size=1024" class="avatar"><div class="member-role">Developer</div><div style="font-weight: 800; font-size: 1.2em; margin-top:5px;">Nexus_Dev</div></div>
+    <div class="member-card"><img src="https://cdn.discordapp.com/guilds/1212456009818177566/users/1131262904470098062/avatars/244f94090de6e39b467af79664f823a5.webp?size=1024" class="avatar"><div class="member-role">Founder</div><div style="font-weight: 800; font-size: 1.2em; margin-top:5px;">404</div></div>
+    <div class="member-card"><img src="https://cdn.discordapp.com/avatars/859083491098755092/55fb56029125f7d2839036fb2fa59f28.webp?size=1024" class="avatar"><div class="member-role">Founder</div><div style="font-weight: 800; font-size: 1.2em; margin-top:5px;">67'zLeGrinch</div></div>
+  </div></section>
+  <section id="dev"><h2>AVANCEMENT</h2><div class="dev-grid">
+    <div class="dev-card"><div style="display: flex; justify-content: space-between; font-weight: 800; font-size: 0.85em;"><span>VOICE CHAT</span><span style="color: var(--accent)">100%</span></div><div class="progress-bar"><div class="progress-fill" style="width: 100%"></div></div></div>
+    <div class="dev-card"><div style="display: flex; justify-content: space-between; font-weight: 800; font-size: 0.85em;"><span>MAP CHILL</span><span style="color: var(--accent)">90%</span></div><div class="progress-bar"><div class="progress-fill" style="width: 90%"></div></div></div>
+    <div class="dev-card"><div style="display: flex; justify-content: space-between; font-weight: 800; font-size: 0.85em;"><span>INTERFACES (UI)</span><span style="color: var(--accent)">88%</span></div><div class="progress-bar"><div class="progress-fill" style="width: 88%"></div></div></div>
+  </div></section>
+  <section id="contact"><h2>RECRUTEMENT</h2><div class="recruit-box"><h3>Nous recherchons des talents !</h3><div class="recruit-tags"><div class="tag">UI DESIGNER</div><div class="tag">SCRIPTER</div></div><a href="https://discord.gg/refugevc" target="_blank" class="btn-discord">REJOINDRE LE DISCORD</a></div></section>
+</div>
+<footer>© 2026 LE REFUGE FR • SITE OFFICIEL</footer>
+</body>
+</html>
