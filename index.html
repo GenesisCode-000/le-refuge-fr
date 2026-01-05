@@ -3,217 +3,247 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Le Refuge FR | Hub Officiel 2026</title>
+  <title>Le Refuge FR | Hub Officiel</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap');
-
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap');
+    
     :root {
-      --bg: #000000;
-      --nav: #0a0a0b;
-      --card: #141417;
+      --bg: #030305;
+      --card: rgba(13, 13, 17, 0.7);
       --accent: #00a2ff;
+      --accent-glow: rgba(0, 162, 255, 0.3);
       --text: #ffffff;
       --sec: #94a3b8;
+      --border: rgba(255, 255, 255, 0.05);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; }
-    body { background: var(--bg); color: var(--text); scroll-behavior: smooth; overflow-x: hidden; }
+    body { background: var(--bg); color: var(--text); overflow: hidden; height: 100vh; }
 
-    /* EFFET PARTICULES */
-    #particles-js {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 1;
-      pointer-events: none;
+    /* Effet de lueur d'ambiance en fond */
+    .ambiance {
+      position: fixed; width: 600px; height: 600px;
+      background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+      top: 50%; left: 50%; transform: translate(-50%, -50%);
+      z-index: 0; pointer-events: none; filter: blur(80px);
     }
 
-    /* Navigation */
-    nav {
-      position: fixed; top: 0; width: 100%; height: 70px;
-      background: var(--nav); display: flex; align-items: center; justify-content: space-between;
-      padding: 0 8%; z-index: 1000; border-bottom: 2px solid #1e1e20;
+    #particles-js { position: fixed; width: 100%; height: 100%; z-index: 1; pointer-events: none; }
+
+    /* MENU CENTRÉ À GAUCHE - STYLE GLASS */
+    .nav-container {
+      position: fixed; top: 50%; left: 40px; transform: translateY(-50%);
+      display: flex; flex-direction: column; gap: 15px; z-index: 1000;
+      padding: 25px 15px; border-radius: 30px;
+      background: rgba(255, 255, 255, 0.02); border: 1px solid var(--border);
+      backdrop-filter: blur(20px); box-shadow: 0 10px 40px rgba(0,0,0,0.4);
     }
-    .logo { font-weight: 800; font-size: 1.1em; }
-    .nav-links { display: flex; gap: 30px; }
-    .nav-links a { text-decoration: none; color: var(--sec); font-size: 0.85em; font-weight: 600; transition: 0.3s; }
-    .nav-links a:hover { color: var(--accent); }
-
-    /* Hero Section */
-    .hero {
-      height: 60vh; background-size: cover; background-position: center;
-      display: flex; align-items: flex-end; position: relative; margin-top: 70px;
-      background-image: linear-gradient(0deg, rgba(0,0,0,1) 10%, transparent 100%), url('https://images-ext-1.discordapp.net/external/XOoAlWeo9TgXIBy9OtXT3jnSFzchnSfbfl70SPs1aE4/%3Fsize%3D1024/https/cdn.discordapp.com/banners/1212456009818177566/9235312417bc581e821c301755e74010.webp?format=webp');
-      z-index: 2;
+    .nav-btn {
+      background: transparent; border: none; color: var(--sec);
+      padding: 12px 20px; text-align: left; font-weight: 800; font-size: 0.75rem;
+      cursor: pointer; transition: 0.4s; border-radius: 15px;
+      text-transform: uppercase; letter-spacing: 2px;
     }
-    .hero-content { position: relative; z-index: 2; width: 100%; max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
-    .game-title { font-size: clamp(2.2em, 5vw, 3.8em); font-weight: 800; line-height: 1; margin-bottom: 10px; }
-    .status-tag { background: var(--accent); color: #fff; padding: 6px 14px; border-radius: 8px; font-size: 0.75em; font-weight: 700; display: inline-block; margin-bottom: 15px; }
+    .nav-btn.active { color: var(--accent); background: rgba(0, 162, 255, 0.1); text-shadow: 0 0 10px var(--accent); }
+    .nav-btn:hover { color: white; transform: scale(1.05) translateX(5px); }
 
-    /* Container */
-    .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; position: relative; z-index: 2; }
-    section { padding: 60px 0; scroll-margin-top: 100px; }
-    
-    h2 { font-size: 1.6em; margin-bottom: 40px; font-weight: 800; display: flex; align-items: center; gap: 20px; }
-    h2::after { content: ""; flex: 1; height: 2px; background: #1e1e20; }
-
-    /* Team */
-    .team-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; }
-    .member-card { background: var(--card); padding: 35px 20px; border-radius: 20px; text-align: center; border: 1px solid #222; transition: 0.3s; backdrop-filter: blur(5px); }
-    .member-card:hover { border-color: var(--accent); transform: translateY(-5px); }
-    .avatar { width: 100px; height: 100px; border-radius: 50%; margin-bottom: 20px; border: 3px solid #1e1e20; object-fit: cover; }
-    .member-role { font-size: 0.7em; font-weight: 800; text-transform: uppercase; color: var(--accent); letter-spacing: 1px; }
-
-    /* Dev Log */
-    .dev-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
-    .dev-card { background: var(--card); border-radius: 18px; padding: 25px; border: 1px solid #222; backdrop-filter: blur(5px); }
-    .progress-bar { background: #000; height: 10px; border-radius: 10px; margin-top: 15px; overflow: hidden; }
-    .progress-fill { background: var(--accent); height: 100%; box-shadow: 0 0 10px rgba(0, 162, 255, 0.3); }
-
-    /* Recruitment */
-    .recruit-box { 
-      background: linear-gradient(145deg, #101012, #000); 
-      padding: 60px 40px; border-radius: 30px; text-align: center; border: 1px solid var(--accent);
+    /* CONTENU */
+    .main-content {
+      position: relative; z-index: 2; height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      padding-left: 220px; padding-right: 60px;
     }
-    .recruit-tags { display: flex; justify-content: center; gap: 20px; margin: 30px 0; flex-wrap: wrap; }
-    .tag { 
-      border: 1px dashed var(--accent); padding: 12px 20px; border-radius: 10px; 
-      font-weight: 800; font-size: 0.8em; background: rgba(0, 162, 255, 0.05);
-    }
-    .btn-discord { 
-      background: var(--accent); color: white; text-decoration: none; padding: 18px 40px; 
-      border-radius: 12px; font-weight: 800; display: inline-block; transition: 0.3s;
-    }
-    .btn-discord:hover { filter: brightness(1.2); transform: scale(1.05); }
+    .section { display: none; max-width: 900px; width: 100%; animation: slideIn 0.7s cubic-bezier(0.16, 1, 0.3, 1); }
+    .section.active { display: block; }
 
-    footer { text-align: center; padding: 60px; color: #444; border-top: 1px solid #111; font-size: 0.85em; font-weight: 600; }
+    .glass-card {
+      background: var(--card); border: 1px solid var(--border);
+      padding: 50px; border-radius: 40px; backdrop-filter: blur(10px);
+      box-shadow: 0 40px 100px rgba(0,0,0,0.8); position: relative; overflow: hidden;
+    }
+    .glass-card::before {
+      content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    }
 
-    @media (max-width: 850px) { .team-row { grid-template-columns: 1fr; } }
+    /* HOME */
+    .game-img {
+      width: 100%; border-radius: 25px; border: 1px solid var(--border);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.5); margin-top: 25px;
+      transition: 0.5s; cursor: pointer;
+    }
+    .game-img:hover { transform: scale(1.02); border-color: var(--accent); }
+
+    /* PROGRESS */
+    .prog-item { margin-top: 30px; }
+    .prog-label { display: flex; justify-content: space-between; margin-bottom: 12px; font-weight: 800; letter-spacing: 1px; }
+    .bar-bg { width: 100%; height: 8px; background: rgba(0,0,0,0.6); border-radius: 10px; }
+    .bar-fill { height: 100%; background: var(--accent); border-radius: 10px; box-shadow: 0 0 20px var(--accent); transition: 1.5s ease-out; }
+
+    /* CONTACT / TEAM */
+    .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 15px; margin-top: 30px; }
+    .member-card {
+      background: rgba(255,255,255,0.03); padding: 25px 15px; border-radius: 25px;
+      text-align: center; border: 1px solid var(--border); transition: 0.4s;
+    }
+    .member-card:hover { border-color: var(--accent); background: rgba(0,162,255,0.1); transform: translateY(-10px); }
+    .avatar { width: 70px; height: 70px; border-radius: 20px; border: 2px solid var(--accent); margin-bottom: 15px; }
+
+    /* RECRUTEMENT PRÉCIS */
+    .recruit-header { font-size: 2.2rem; font-weight: 800; background: linear-gradient(to bottom, #fff, #666); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .payment-tag {
+      display: inline-block; padding: 6px 15px; background: rgba(0, 162, 255, 0.15);
+      border: 1px solid var(--accent); color: var(--accent); border-radius: 50px;
+      font-size: 0.7rem; font-weight: 800; margin-bottom: 20px; text-transform: uppercase;
+    }
+    .discord-btn {
+      display: inline-block; background: #fff; color: #000; padding: 20px 50px;
+      border-radius: 18px; text-decoration: none; font-weight: 800; margin-top: 35px;
+      transition: 0.3s; box-shadow: 0 10px 30px rgba(255,255,255,0.2);
+    }
+    .discord-btn:hover { background: var(--accent); color: #fff; transform: scale(1.05); box-shadow: 0 10px 30px var(--accent-glow); }
+
+    /* MODAL */
+    .modal {
+      display: none; position: fixed; inset: 0; z-index: 2000;
+      background: rgba(0,0,0,0.95); backdrop-filter: blur(20px); align-items: center; justify-content: center;
+    }
+    .modal-content { max-width: 480px; width: 90%; animation: pop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); }
+    .modal-content img { width: 100%; border-radius: 30px; border: 1px solid var(--accent); }
+
+    /* ANIMATIONS */
+    @keyframes slideIn { from { opacity: 0; transform: translateX(50px); filter: blur(10px); } to { opacity: 1; transform: translateX(0); filter: blur(0); } }
+    @keyframes pop { from { opacity: 0; transform: scale(0.8); } to { opacity: 1; transform: scale(1); } }
+
+    @media (max-width: 900px) {
+      .nav-container { top: auto; bottom: 20px; left: 50%; transform: translateX(-50%); flex-direction: row; padding: 10px; border-radius: 20px; }
+      .main-content { padding: 20px; padding-top: 60px; }
+      .nav-btn { padding: 10px; font-size: 0.6rem; }
+    }
   </style>
 </head>
 <body>
 
+<div class="ambiance"></div>
 <div id="particles-js"></div>
 
-<nav>
-  <div class="nav-content">
-    <div class="logo">LE REFUGE FR</div>
-    <div class="nav-links">
-      <a href="#home">ACCUEIL</a>
-      <a href="#infos">INFOS</a>
-      <a href="#dev">AVANCEMENT</a>
-      <a href="#contact">RECRUTEMENT</a>
-    </div>
-  </div>
+<nav class="nav-container">
+  <button class="nav-btn active" onclick="showSection('home', this)">Home</button>
+  <button class="nav-btn" onclick="showSection('infos', this)">Infos</button>
+  <button class="nav-btn" onclick="showSection('progress', this)">Progress</button>
+  <button class="nav-btn" onclick="showSection('contact', this)">Contact</button>
+  <button class="nav-btn" onclick="showSection('recruit', this)">Recrutement</button>
 </nav>
 
-<section id="home" class="hero">
-  <div class="hero-content">
-    <div class="status-tag">PHASE FINALE DE DÉVELOPPEMENT</div>
-    <h1 class="game-title">🎙️ Le Refuge FR</h1>
-  </div>
-</section>
-
-<div class="container">
+<main class="main-content">
   
-  <section id="infos">
-    <h2>A PROPOS DU JEU</h2>
-    <div class="dev-card">
-      <p style="font-size: 1.1em; line-height: 1.8; color: var(--sec);">
-        <b>Le Refuge FR</b> est un espace de rencontre universel sur Roblox. Peu importe d'où tu viens, tout le monde est bienvenu pour se réunir et discuter dans une ambiance chill et respectueuse.
+  <section id="home" class="section active">
+    <div class="glass-card">
+      <h1 style="font-size: 3rem; font-weight: 800; letter-spacing: -2px;">LE REFUGE FR</h1>
+      <p style="color: var(--sec); font-weight: 600;">Projet communautaire nouvelle génération.</p>
+      <img src="https://cdn.discordapp.com/banners/1212456009818177566/9969b88e8bfc77f6c962d487d5ada93a.webp?size=1024" class="game-img">
+    </div>
+  </section>
+
+  <section id="infos" class="section">
+    <div class="glass-card">
+      <h2 style="color: var(--accent); font-size: 2rem; margin-bottom: 20px;">L'EXPÉRIENCE</h2>
+      <p style="font-size: 1.15rem; line-height: 1.8; color: var(--sec); font-weight: 500;">
+        Le Refuge FR redéfinit les codes du Voice Chat sur Roblox. 
+        <br><br>
+        Plongez dans un univers où chaque détail compte : de l'ambiance sonore aux jeux de lumière, tout est conçu pour une immersion totale. Un hub social unique pour la communauté française.
       </p>
     </div>
   </section>
 
-  <section id="team">
-    <h2>L'ÉQUIPE CORE</h2>
-    <div class="team-row">
-      <div class="member-card">
-        <img src="https://cdn.discordapp.com/avatars/1381381156565549188/f4534591b3663c7b8e8f07167ec8beb6.webp?size=1024" class="avatar">
-        <div class="member-role">Developer</div>
-        <div style="font-weight: 800; font-size: 1.2em; margin-top:5px;">Nexus_Dev</div>
+  <section id="progress" class="section">
+    <div class="glass-card">
+      <h2 style="font-size: 2rem; margin-bottom: 10px;">DÉVELOPPEMENT</h2>
+      <div class="prog-item">
+        <div class="prog-label"><span>ARCHITECTURE MAP</span><span>92%</span></div>
+        <div class="bar-bg"><div class="bar-fill" style="width: 92%"></div></div>
       </div>
-      <div class="member-card">
-        <img src="https://cdn.discordapp.com/guilds/1212456009818177566/users/1131262904470098062/avatars/244f94090de6e39b467af79664f823a5.webp?size=1024" class="avatar">
-        <div class="member-role">Founder</div>
-        <div style="font-weight: 800; font-size: 1.2em; margin-top:5px;">404</div>
-      </div>
-      <div class="member-card">
-        <img src="https://cdn.discordapp.com/avatars/859083491098755092/55fb56029125f7d2839036fb2fa59f28.webp?size=1024" class="avatar">
-        <div class="member-role">Founder</div>
-        <div style="font-weight: 800; font-size: 1.2em; margin-top:5px;">67'zLeGrinch</div>
+      <div class="prog-item">
+        <div class="prog-label"><span>CORE SYSTEMS</span><span>89%</span></div>
+        <div class="bar-bg"><div class="bar-fill" style="width: 89%"></div></div>
       </div>
     </div>
   </section>
 
-  <section id="dev">
-    <h2>AVANCEMENT</h2>
-    <div class="dev-grid">
-      <div class="dev-card">
-        <div style="display: flex; justify-content: space-between; font-weight: 800; font-size: 0.85em;">
-          <span>VOICE CHAT</span>
-          <span style="color: var(--accent)">100%</span>
+  <section id="contact" class="section">
+    <div class="glass-card">
+      <h2 style="font-size: 2rem; margin-bottom: 10px;">L'ÉQUIPE</h2>
+      <div class="team-grid">
+        <div class="member-card" onclick="openP('https://i.imgur.com/dVEwF6R.png')">
+          <img src="https://cdn.discordapp.com/avatars/859083491098755092/55fb56029125f7d2839036fb2fa59f28.webp?size=1024" class="avatar">
+          <div style="font-weight: 800; font-size: 0.9rem;">67</div>
+          <div style="font-size: 0.6rem; color: var(--accent); font-weight: 800; margin-top: 5px;">FOUNDER</div>
         </div>
-        <div class="progress-bar"><div class="progress-fill" style="width: 100%"></div></div>
-      </div>
-      <div class="dev-card">
-        <div style="display: flex; justify-content: space-between; font-weight: 800; font-size: 0.85em;">
-          <span>MAP CHILL</span>
-          <span style="color: var(--accent)">90%</span>
+        <div class="member-card" onclick="openP('https://i.imgur.com/u2nxwXe.png')">
+          <img src="https://cdn.discordapp.com/guilds/1212456009818177566/users/1131262904470098062/avatars/6f468ee239f2c1fa2328b86119892b45.webp?size=1024" class="avatar">
+          <div style="font-weight: 800; font-size: 0.9rem;">404</div>
+          <div style="font-size: 0.6rem; color: var(--accent); font-weight: 800; margin-top: 5px;">FOUNDER</div>
         </div>
-        <div class="progress-bar"><div class="progress-fill" style="width: 90%"></div></div>
-      </div>
-      <div class="dev-card">
-        <div style="display: flex; justify-content: space-between; font-weight: 800; font-size: 0.85em;">
-          <span>INTERFACES (UI)</span>
-          <span style="color: var(--accent)">88%</span>
+        <div class="member-card" onclick="openP('https://i.imgur.com/VXBkpWw.png')">
+          <img src="https://cdn.discordapp.com/avatars/1398273248436682782/fa9233c84474e7b9717cf9089f134b11.webp?size=1024" class="avatar">
+          <div style="font-weight: 800; font-size: 0.9rem;">qqq</div>
+          <div style="font-size: 0.6rem; color: var(--accent); font-weight: 800; margin-top: 5px;">FOUNDER</div>
         </div>
-        <div class="progress-bar"><div class="progress-fill" style="width: 88%"></div></div>
+        <div class="member-card" onclick="openP('https://i.imgur.com/KFMggdi.png')">
+          <img src="https://cdn.discordapp.com/avatars/1381381156565549188/f4534591b3663c7b8e8f07167ec8beb6.webp?size=1024" class="avatar">
+          <div style="font-weight: 800; font-size: 0.9rem;">Nexus_Dev</div>
+          <div style="font-size: 0.6rem; color: var(--accent); font-weight: 800; margin-top: 5px;">DEV</div>
+        </div>
+        <div class="member-card" onclick="openP('https://i.imgur.com/7UH6JdN.png')">
+          <img src="https://cdn.discordapp.com/avatars/1325219077488246788/1803e875494987c3a9450ec5c17a007e.webp?size=1024" class="avatar">
+          <div style="font-weight: 800; font-size: 0.9rem;">Hyzo</div>
+          <div style="font-size: 0.6rem; color: var(--accent); font-weight: 800; margin-top: 5px;">SCRIPTER</div>
+        </div>
       </div>
     </div>
   </section>
 
-  <section id="contact">
-    <h2>RECRUTEMENT</h2>
-    <div class="recruit-box">
-      <h3 style="margin-bottom: 15px;">Nous recherchons des talents !</h3>
-      <div class="recruit-tags">
-        <div class="tag">UI DESIGNER</div>
-        <div class="tag">SCRIPTER</div>
-      </div>
-      <a href="https://discord.gg/ucYafcVnHE" target="_blank" class="btn-discord">REJOINDRE LE DISCORD</a>
+  <section id="recruit" class="section">
+    <div class="glass-card" style="text-align: center;">
+      <div class="payment-tag">Commission / Revenue Share</div>
+      <h2 class="recruit-header">RECRUTEMENT SCRIPTER</h2>
+      <p style="font-size: 1.15rem; color: var(--sec); margin-top: 20px; line-height: 1.6;">
+        Nous recherchons des <b>Scripters</b> avec un <b>Bon Niveau</b> pour finaliser le projet et pour que le jeu puisse enfin voir la lumière du jour. 
+        <br><br>
+        <span style="color: #fff; font-weight: 700;">RÉMUNÉRATION :</span> Les développeurs seront payés selon les revenus générés par le jeu.
+      </p>
+      <a href="https://discord.gg/x4awXwWV98" target="_blank" class="discord-btn">POSTULER MAINTENANT</a>
     </div>
   </section>
 
+</main>
+
+<div id="modal" class="modal" onclick="closeP()">
+  <div class="modal-content" onclick="event.stopPropagation()">
+    <img id="mImg" src="">
+  </div>
 </div>
-
-<footer>© 2026 LE REFUGE FR • SITE OFFICIEL</footer>
 
 <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 <script>
   particlesJS("particles-js", {
-    "particles": {
-      "number": { "value": 70, "density": { "enable": true, "value_area": 800 } },
-      "color": { "value": "#00a2ff" },
-      "shape": { "type": "circle" },
-      "opacity": { "value": 0.5, "random": true },
-      "size": { "value": 3, "random": true },
-      "line_linked": { "enable": false },
-      "move": {
-        "enable": true,
-        "speed": 1,
-        "direction": "top",
-        "random": true,
-        "straight": false,
-        "out_mode": "out"
-      }
-    },
-    "interactivity": { "events": { "onhover": { "enable": false } } },
-    "retina_detect": true
+    "particles": { "number": { "value": 30 }, "color": { "value": "#00a2ff" }, "opacity": { "value": 0.2 }, "size": { "value": 2 }, "line_linked": { "enable": true, "opacity": 0.05 }, "move": { "speed": 0.8 } }
   });
-</script>
 
+  function showSection(id, btn) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    btn.classList.add('active');
+  }
+
+  function openP(u) {
+    document.getElementById('mImg').src = u;
+    document.getElementById('modal').style.display = 'flex';
+  }
+  function closeP() {
+    document.getElementById('modal').style.display = 'none';
+  }
+</script>
 </body>
 </html>
