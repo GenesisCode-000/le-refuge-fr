@@ -3,80 +3,119 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Le Refuge : Pourquoi il faut s'en méfier</title>
+    <title>Le Refuge Arnaque | La Vérité sur @404db</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=JetBrains+Mono&display=swap');
 
         :root {
-            --danger: #e63946;
-            --bg: #0b0c10;
-            --card: #1f2833;
-            --text: #c5c6c7;
-            --white: #ffffff;
+            --danger: #ff3333;
+            --bg: #0d1117;
+            --card: #161b22;
+            --border: #30363d;
+            --text: #c9d1d9;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; line-height: 1.6; }
 
-        .container { max-width: 750px; margin: 0 auto; padding: 60px 20px; }
+        .container { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
 
-        header { margin-bottom: 50px; }
-        .bad-faith-tag { color: var(--danger); font-weight: 800; text-transform: uppercase; font-size: 12px; letter-spacing: 1.5px; }
-        h1 { font-size: 48px; color: var(--white); font-weight: 900; margin-top: 5px; }
-        h1 span { color: var(--danger); }
+        /* En-tête */
+        header { text-align: center; padding: 40px 0; border-bottom: 1px solid var(--border); margin-bottom: 40px; }
+        .shame-tag { background: var(--danger); color: white; padding: 5px 15px; font-weight: 900; font-size: 12px; border-radius: 50px; text-transform: uppercase; }
+        h1 { font-size: 50px; font-weight: 900; color: #fff; margin: 15px 0; letter-spacing: -2px; }
+        .target { font-family: 'JetBrains Mono', monospace; color: #8b949e; font-size: 14px; }
 
-        .stats-area { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 30px 0; }
-        .stat-box { background: var(--card); padding: 20px; border-radius: 6px; border: 1px solid #333; }
-        .stat-box small { font-size: 11px; text-transform: uppercase; color: #888; display: block; margin-bottom: 5px; }
-        .stat-box span { font-size: 22px; font-weight: 700; color: var(--white); }
-        .stat-box.stolen { border-left: 4px solid var(--danger); }
+        /* Stats */
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 40px; }
+        .stat-card { background: var(--card); border: 1px solid var(--border); padding: 25px; border-radius: 12px; text-align: center; }
+        .stat-card h3 { font-size: 12px; color: #8b949e; text-transform: uppercase; margin-bottom: 10px; }
+        .stat-card p { font-size: 28px; font-weight: 800; color: #fff; }
+        .stat-card.red p { color: var(--danger); }
 
-        .description { background: #161b22; padding: 25px; border-radius: 8px; margin-bottom: 30px; border: 1px solid #30363d; }
-        .description h2 { color: var(--white); margin-bottom: 15px; font-size: 20px; }
-        .description p { margin-bottom: 15px; }
+        /* Section Images/Preuves */
+        .evidence-section { margin-top: 50px; }
+        .evidence-section h2 { font-size: 24px; margin-bottom: 20px; color: #fff; border-left: 4px solid var(--danger); padding-left: 15px; }
+        
+        .evidence-grid { display: flex; flex-direction: column; gap: 30px; }
+        .evidence-item { background: var(--card); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+        .evidence-item img { width: 100%; height: auto; display: block; filter: grayscale(20%); transition: 0.3s; }
+        .evidence-item img:hover { filter: grayscale(0%); }
+        .evidence-desc { padding: 20px; border-top: 1px solid var(--border); }
+        .evidence-desc h4 { color: var(--danger); font-size: 16px; margin-bottom: 5px; }
+        .evidence-desc p { font-size: 14px; color: #8b949e; }
 
-        .footer-note { text-align: center; color: #444; font-size: 12px; margin-top: 100px; }
+        /* Bloc Humiliation */
+        .humiliation-box { background: rgba(255, 51, 51, 0.1); border: 1px solid var(--danger); padding: 30px; border-radius: 12px; margin: 50px 0; }
+        .humiliation-box h3 { color: var(--danger); font-size: 22px; margin-bottom: 10px; }
+        .humiliation-box p { font-size: 16px; color: #fff; font-weight: 500; }
+
+        footer { text-align: center; padding: 40px; color: #484f58; font-size: 12px; border-top: 1px solid var(--border); }
     </style>
 </head>
 <body>
 
 <div class="container">
     <header>
-        <p class="bad-faith-tag">Témoignage Développeur</p>
-        <h1>Le Refuge : <span>Arnaque</span></h1>
-        <p style="margin-top: 10px;">Informations sur les agissements de <strong>@404db</strong> (ID: 5347389601).</p>
+        <span class="shame-tag">Arnaqueur Démasqué</span>
+        <h1>Le Refuge Arnaque !</h1>
+        <p class="target">Profil : <a href="https://www.roblox.com/fr/users/5347389601/profile" style="color: #58a6ff; text-decoration: none;">@404db (5347389601)</a></p>
     </header>
 
-    <div class="stats-area">
-        <div class="stat-box">
-            <small>Fonds du Groupe</small>
-            <span>10 000 R$</span>
+    <div class="stats-grid">
+        <div class="stat-card">
+            <h3>Fonds du Groupe</h3>
+            <p>10 000 R$</p>
         </div>
-        <div class="stat-box">
-            <small>Dons du Jeu</small>
-            <span>3 000 R$</span>
+        <div class="stat-card">
+            <h3>Dons du Jeu</h3>
+            <p>3 000 R$</p>
         </div>
-        <div class="stat-box stolen">
-            <small>Payé au Dev</small>
-            <span style="color: var(--danger);">0 R$ (Volé)</span>
+        <div class="stat-card red">
+            <h3>Payé au Développeur</h3>
+            <p>0 R$</p>
         </div>
     </div>
 
-    <div class="description">
-        <h2>Un projet basé sur le vol</h2>
-        <p>Après avoir profité du travail fourni par le développeur, le fondateur du projet <strong>Le Refuge</strong> a décidé de ne pas respecter ses engagements financiers.</p>
-        
-        <p>Plutôt que d'assumer et de payer ce qu'il doit, <strong>@404db a carrément supprimé son groupe Roblox</strong> dès qu'il a été mis face à ses responsabilités. C'est une fuite totale qui prouve la mauvaise foi du personnage.</p>
-        
-        <p>Ne vous faites pas avoir : il préfère couler son propre projet et sa propre communauté plutôt que de payer les gens qui travaillent pour lui.</p>
+    <div class="humiliation-box">
+        <h3>Preuve de sa lâcheté</h3>
+        <p>Plutôt que d'assumer ses dettes, <strong>@404db a supprimé son groupe Roblox</strong> et bloqué ses collaborateurs dès qu'il a été exposé. Il a préféré détruire son propre projet par peur de payer ce qu'il doit.</p>
     </div>
 
-    <div style="border: 1px solid var(--danger); padding: 20px; border-radius: 8px; text-align: center;">
-        <p style="color: var(--danger); font-weight: bold;">⚠️ MISE EN GARDE</p>
-        <p style="font-size: 14px;">Si cet utilisateur vous propose un projet, sachez qu'il disparaîtra avec les fonds dès qu'il pourra encaisser.</p>
+    <div class="evidence-section">
+        <h2>Dossier de Preuves</h2>
+        <div class="evidence-grid">
+            
+            <div class="evidence-item">
+                <img src="https://media.discordapp.net/attachments/1451746097121722418/1464675035770916937/image.png?format=webp&quality=lossless">
+                <div class="evidence-desc">
+                    <h4>Preuve A : Obsession pour le profit</h4>
+                    <p>Capture montrant que sa seule motivation est d'encaisser les revenus de la communauté sans considération pour le staff.</p>
+                </div>
+            </div>
+
+            <div class="evidence-item">
+                <img src="https://media.discordapp.net/attachments/1451746097121722418/1464675036030828748/image.png?format=webp&quality=lossless">
+                <div class="evidence-desc">
+                    <h4>Preuve B : Mensonges confirmés</h4>
+                    <p>Ici, on voit clairement que les promesses de paiement étaient de la pure manipulation pour obtenir du travail gratuitement.</p>
+                </div>
+            </div>
+
+            <div class="evidence-item">
+                <img src="https://media.discordapp.net/attachments/1451746097121722418/1464675036333080821/image.png?format=webp&quality=lossless">
+                <div class="evidence-desc">
+                    <h4>Preuve C : Abus de pouvoir</h4>
+                    <p>Échanges finaux montrant le mépris total du fondateur envers ses collaborateurs juste avant la fuite.</p>
+                </div>
+            </div>
+
+        </div>
     </div>
 
-    <p class="footer-note">Dénonciation publique - Le Refuge Arnaque - 2026</p>
+    <footer>
+        BASE DE DONNÉES DE PROTECTION DES DÉVELOPPEURS | LE REFUGE EXPOSÉ - 2026
+    </footer>
 </div>
 
 </body>
