@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DOSSIER EXPLOITATION | LE REFUGE</title>
+    <title>ALERTE : EXPLOITATION DÉTECTÉE | LE REFUGE</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;700&family=Outfit:wght@900&display=swap');
 
         :root {
             --accent: #ff003c;
-            --bg: #0a0a0a;
-            --card: #151515;
+            --bg: #050505;
+            --card: #111111;
             --text: #ffffff;
         }
 
@@ -19,131 +19,110 @@
             background: var(--bg); 
             color: var(--text); 
             font-family: 'Space Grotesk', sans-serif;
-            line-height: 1.6;
+            overflow-x: hidden;
         }
 
-        /* Background Effect */
-        .bg-grid {
-            position: fixed; inset: 0;
-            background-image: radial-gradient(circle at 2px 2px, #222 1px, transparent 0);
-            background-size: 40px 40px;
-            z-index: -1;
-            opacity: 0.5;
-        }
-
-        .container { max-width: 1000px; margin: 0 auto; padding: 100px 20px; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 60px 20px; }
 
         /* Header */
-        header { text-align: center; margin-bottom: 80px; }
-        .badge { 
-            background: var(--accent); color: #000; padding: 5px 15px; 
-            font-weight: 700; font-size: 12px; border-radius: 4px; 
-            text-transform: uppercase; letter-spacing: 2px;
-        }
-        h1 { 
-            font-family: 'Outfit', sans-serif; font-size: clamp(3rem, 10vw, 6rem); 
-            line-height: 0.8; margin-top: 20px; text-transform: uppercase;
-        }
-        .subtitle { color: #666; font-size: 20px; margin-top: 20px; }
+        header { text-align: center; margin-bottom: 60px; border-bottom: 1px solid #222; padding-bottom: 40px; }
+        .danger-tag { color: var(--accent); font-weight: 700; letter-spacing: 5px; text-transform: uppercase; font-size: 14px; }
+        h1 { font-family: 'Outfit', sans-serif; font-size: clamp(2.5rem, 8vw, 5rem); margin: 10px 0; }
+        .founder-name { color: var(--accent); text-decoration: underline; }
 
-        /* Stats Section */
-        .stats-container {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px; margin-bottom: 60px;
-        }
-        .stat-card {
-            background: var(--card); border: 1px solid #222; padding: 30px;
-            border-radius: 20px; text-align: left;
-        }
-        .stat-card h3 { color: #555; font-size: 14px; text-transform: uppercase; margin-bottom: 10px; }
-        .stat-card p { font-size: 32px; font-weight: 700; color: var(--accent); }
+        /* Stats */
+        .grid-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 50px; }
+        .stat-item { background: var(--card); padding: 25px; border-radius: 15px; border-left: 5px solid var(--accent); }
+        .stat-label { font-size: 12px; color: #777; text-transform: uppercase; }
+        .stat-value { font-size: 24px; font-weight: 700; display: block; margin-top: 5px; }
 
         /* Evidence Section */
-        .section-title { font-size: 24px; font-weight: 700; margin-bottom: 30px; border-left: 4px solid var(--accent); padding-left: 15px; }
-        
-        .evidence-grid { display: grid; gap: 40px; margin-bottom: 80px; }
-        .evidence-item { background: var(--card); border-radius: 24px; overflow: hidden; border: 1px solid #222; }
-        .evidence-img { width: 100%; display: block; filter: grayscale(0.2) contrast(1.1); transition: 0.5s; }
-        .evidence-img:hover { filter: grayscale(0); transform: scale(1.02); }
-        .evidence-desc { padding: 30px; }
-        .evidence-desc h4 { color: var(--accent); margin-bottom: 10px; }
+        .evidence-section { margin-top: 50px; }
+        .section-title { font-family: 'Outfit', sans-serif; font-size: 32px; margin-bottom: 30px; display: flex; align-items: center; gap: 15px; }
+        .section-title::after { content: ""; flex: 1; height: 1px; background: #333; }
 
-        /* Ban Section */
-        .ban-notice {
-            background: linear-gradient(45deg, #1a0000, #0a0a0a);
-            border: 2px dashed var(--accent); padding: 40px; border-radius: 24px;
-            text-align: center; margin-bottom: 80px;
+        .evidence-wall { display: flex; flex-direction: column; gap: 30px; }
+        .evidence-card { background: var(--card); border-radius: 20px; overflow: hidden; border: 1px solid #222; }
+        .evidence-card img { width: 100%; height: auto; display: block; border-bottom: 1px solid #222; }
+        .evidence-info { padding: 25px; }
+        .evidence-info h4 { color: var(--accent); margin-bottom: 10px; font-size: 18px; }
+        .evidence-info p { color: #aaa; font-size: 15px; }
+
+        /* Ban Banner */
+        .ban-banner { 
+            background: var(--accent); color: #000; padding: 20px; text-align: center; 
+            font-weight: 900; font-size: 20px; text-transform: uppercase; 
+            margin: 40px 0; transform: rotate(-1deg);
         }
-        .ban-notice h2 { font-size: 32px; margin-bottom: 15px; }
 
-        /* Footer */
-        footer { text-align: center; color: #333; font-size: 12px; padding-bottom: 50px; }
-
-        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.5; } }
-        .live { color: #00ff00; animation: pulse 2s infinite; font-size: 14px; font-weight: 700; }
+        footer { text-align: center; color: #444; margin-top: 100px; padding-bottom: 40px; border-top: 1px solid #222; padding-top: 40px; }
     </style>
 </head>
 <body>
 
-<div class="bg-grid"></div>
-
 <div class="container">
     <header>
-        <span class="badge">Alerte Fraude</span>
-        <h1>LE REFUGE<br><span style="color: #444;">EXPOSED.</span></h1>
-        <p class="subtitle">Dossier complet sur le non-paiement et l'abus de pouvoir du fondateur @404db.</p>
+        <p class="danger-tag">Avertissement Communauté</p>
+        <h1>L'ARGENT AVANT<br>L'HONNEUR.</h1>
+        <p style="color: #888; font-size: 18px;">Preuves de l'arnaque orchestrée par <span class="founder-name">@404db</span> sur le projet Le Refuge.</p>
     </header>
 
-    <div class="stats-container">
-        <div class="stat-card">
-            <h3>Dons encaissés</h3>
-            <p>3 000+ R$</p>
+    <div class="grid-stats">
+        <div class="stat-item">
+            <span class="stat-label">Dons Joueurs</span>
+            <span class="stat-value">3 000+ R$</span>
         </div>
-        <div class="stat-card">
-            <h3>Trésorerie Groupe</h3>
-            <p>10 000+ R$</p>
+        <div class="stat-item">
+            <span class="stat-label">Fonds du Groupe</span>
+            <span class="stat-value">10 000+ R$</span>
         </div>
-        <div class="stat-card">
-            <h3>Dette Développeur</h3>
-            <p>IMPAYÉ</p>
+        <div class="stat-item">
+            <span class="stat-label">Salaire Développeur</span>
+            <span class="stat-value" style="color: var(--accent);">VOLÉ (0 R$)</span>
         </div>
     </div>
 
-    <div class="ban-notice">
-        <span class="live">● DOSSIER PUBLIC</span>
-        <h2>L'INCARTADE DU FONDATEUR</h2>
-        <p>Au lieu d'assumer ses dettes et de payer le travail fourni, le fondateur a choisi la méthode la plus lâche : **le bannissement systématique**. Il pense qu'en supprimant un compte Discord, il supprime une dette. C'est le pire fondateur de l'histoire du projet.</p>
+    <div class="ban-banner">
+        RÉPONSE DU FONDATEUR : LE BANNISSEMENT PLUTÔT QUE LE PAIEMENT
     </div>
 
-    <h2 class="section-title">PREUVES DES PROMESSES NON TENUES</h2>
-    
-    <div class="evidence-grid">
-        <div class="evidence-item">
-            <img src="https://media.discordapp.net/attachments/1451746097121722418/1464668556124750016/image.png?ex=69764e64&is=6974fce4&hm=e3b18b497ada7b015352d6bc6268095316a26e38f3351ac14b564f66d0f543d4&=&format=webp&quality=lossless" class="evidence-img">
-            <div class="evidence-desc">
-                <h4>Preuve #1 : L'engagement</h4>
-                <p>Ici, le fondateur confirme les conditions. Des promesses faites pour obtenir mon travail, mais jamais honorées une fois le code livré.</p>
+    <div class="evidence-section">
+        <h2 class="section-title">DOSSIER DE PREUVES #2</h2>
+        
+        <div class="evidence-wall">
+            <div class="evidence-card">
+                <img src="https://media.discordapp.net/attachments/1451746097121722418/1464675035770916937/image.png?ex=6976546c&is=697502ec&hm=871360819baf4d5b6a015c608a025cf0ef6bcbfb57974ff447970587354f66bd&=&format=webp&quality=lossless">
+                <div class="evidence-info">
+                    <h4>Preuve A : Obsession pour les revenus</h4>
+                    <p>On voit ici que la seule priorité est l'encaissement. Le travail fourni n'est qu'un outil pour remplir ses poches.</p>
+                </div>
+            </div>
+
+            <div class="evidence-card">
+                <img src="https://media.discordapp.net/attachments/1451746097121722418/1464675036030828748/image.png?ex=6976546c&is=697502ec&hm=81fddc55e60c4da67cbf34174ed0768c379a76dbc8012fa771db754a0a0a836b&=&format=webp&quality=lossless">
+                <div class="evidence-info">
+                    <h4>Preuve B : Mensonges démasqués</h4>
+                    <p>La preuve flagrante que les promesses de paiement étaient fausses dès le départ.</p>
+                </div>
+            </div>
+
+            <div class="evidence-card">
+                <img src="https://media.discordapp.net/attachments/1451746097121722418/1464675036333080821/image.png?ex=6976546d&is=697502ed&hm=c45f0e76850a82b07bc4034c9d2d62202aa8db152c781db3183be91a74571c1f&=&format=webp&quality=lossless">
+                <div class="evidence-info">
+                    <h4>Preuve C : L'abus de pouvoir</h4>
+                    <p>Dernier échange montrant que @404db préfère supprimer les gens plutôt que de régler ses dettes.</p>
+                </div>
             </div>
         </div>
-
-        <div class="evidence-item">
-            <img src="https://media.discordapp.net/attachments/1451746097121722418/1464668910640173252/image.png?ex=69764eb8&is=6974fd38&hm=f09796c9ad5f4571bb54852336484db98c2c9720b116abd74047331b116bb17d&=&format=webp&quality=lossless" class="evidence-img">
-            <div class="evidence-desc">
-                <h4>Preuve #2 : La fuite</h4>
-                <p>Capture d'écran montrant les échanges avant le bannissement arbitraire. Le comportement typique d'un "fondateur de merde" qui fuit ses responsabilités.</p>
-            </div>
-        </div>
     </div>
 
-    <div class="text-content" style="background: #111; padding: 40px; border-radius: 20px; border: 1px solid #333; margin-bottom: 80px;">
-        <h2 style="margin-bottom: 20px;">DÉCLARATION FINALE</h2>
-        <p>Le projet "Le Refuge" est désormais marqué par le vol. Toutes les conversations ont été transmises aux forums Roblox, sur X (Twitter) et aux serveurs de recrutement. Le jeu contient également les conséquences techniques de cette trahison.</p>
-        <br>
-        <p><strong>On ne bâtit pas un succès sur le vol.</strong></p>
+    <div style="background: #111; padding: 40px; border-radius: 20px; margin-top: 50px; text-align: center; border: 1px solid var(--accent);">
+        <h2 style="margin-bottom: 20px; color: var(--accent);">VOTRE ATTENTION</h2>
+        <p>Ne travaillez jamais pour ce projet. Ne donnez jamais de Robux à ce groupe. L'argent ne sert qu'à financer un fondateur qui méprise ses collaborateurs.</p>
     </div>
 
     <footer>
-        PROPRIÉTÉ DU DÉVELOPPEUR ARNAQUÉ | TOUS DROITS RÉSERVÉS 2026
+        SITE DE PROTECTION DES DÉVELOPPEURS | LE REFUGE EXPOSÉ
     </footer>
 </div>
 
