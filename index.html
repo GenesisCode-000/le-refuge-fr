@@ -8,11 +8,12 @@
         @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;700&family=Outfit:wght@900&family=JetBrains+Mono&display=swap');
 
         :root {
-            --accent: #00f2ff; /* Cyan moderne */
-            --danger: #ff003c; /* Rouge alerte */
+            --accent: #00f2ff;
+            --danger: #ff003c;
             --bg: #050505;
-            --card: #111111;
+            --card: #0d0d0d;
             --text: #ffffff;
+            --shadow: rgba(0, 242, 255, 0.1);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -23,157 +24,117 @@
             overflow-x: hidden;
         }
 
-        /* Animation de scanline */
+        /* Scanlines */
         body::before {
             content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%);
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.2) 50%);
             background-size: 100% 4px; z-index: 10; pointer-events: none;
         }
 
         .container { max-width: 1100px; margin: 0 auto; padding: 60px 20px; position: relative; z-index: 2; }
 
-        /* Header moderne */
         header { border-left: 5px solid var(--danger); padding-left: 30px; margin-bottom: 60px; }
-        .alert-tag { color: var(--danger); font-family: 'JetBrains Mono'; font-weight: bold; letter-spacing: 3px; font-size: 14px; }
-        h1 { font-family: 'Outfit', sans-serif; font-size: clamp(2rem, 8vw, 5rem); text-transform: uppercase; line-height: 0.9; margin: 10px 0; }
-        h1 span { color: var(--accent); }
-
-        /* Stats */
-        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 50px; }
-        .stat-item { background: var(--card); padding: 25px; border-radius: 4px; border-bottom: 2px solid #222; transition: 0.3s; }
-        .stat-item:hover { border-color: var(--accent); transform: translateY(-5px); }
-        .stat-label { font-size: 11px; color: #666; text-transform: uppercase; font-family: 'JetBrains Mono'; }
-        .stat-value { font-size: 26px; font-weight: 700; display: block; margin-top: 5px; }
-
-        /* Evidence Section */
-        .evidence-title { font-family: 'Outfit', sans-serif; font-size: 32px; margin-bottom: 30px; display: flex; align-items: center; gap: 20px; }
-        .evidence-title::after { content: ""; flex: 1; height: 1px; background: linear-gradient(90deg, var(--accent), transparent); }
-
-        .evidence-grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); 
-            gap: 30px; 
-        }
-
-        .evidence-card { 
-            background: var(--card); 
-            border: 1px solid #222; 
-            border-radius: 8px; 
-            overflow: hidden;
-            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        .evidence-card:hover { border-color: var(--danger); box-shadow: 0 10px 30px rgba(255, 0, 60, 0.2); }
-
-        .evidence-card img { width: 100%; height: auto; display: block; border-bottom: 1px solid #222; }
+        .alert-tag { color: var(--danger); font-family: 'JetBrains Mono'; font-weight: bold; letter-spacing: 3px; font-size: 14px; animation: blink 1s infinite; }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
         
-        .evidence-info { padding: 25px; }
-        .evidence-info h4 { color: var(--accent); font-family: 'JetBrains Mono'; margin-bottom: 10px; }
-        .evidence-info p { color: #888; font-size: 15px; }
+        h1 { font-family: 'Outfit', sans-serif; font-size: clamp(2.5rem, 8vw, 5.5rem); text-transform: uppercase; line-height: 0.85; margin: 10px 0; }
+        h1 span { color: var(--accent); text-shadow: 0 0 20px var(--shadow); }
 
-        /* Full width card for specific evidence */
+        /* Section Témoignage - NOUVEAU */
+        .testimony-section { 
+            background: linear-gradient(90deg, #111, #050505);
+            border: 2px solid #222;
+            border-left: 10px solid var(--accent);
+            padding: 40px;
+            margin-bottom: 60px;
+            border-radius: 0 15px 15px 0;
+            position: relative;
+        }
+        .testimony-section h2 { font-family: 'Outfit'; color: var(--accent); margin-bottom: 20px; text-transform: uppercase; }
+        .testimony-img { width: 100%; border-radius: 8px; border: 1px solid var(--accent); box-shadow: 0 0 30px rgba(0, 242, 255, 0.1); margin-top: 20px; }
+
+        /* Grid */
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 50px; }
+        .stat-item { background: var(--card); padding: 25px; border: 1px solid #1a1a1a; transition: 0.3s; }
+        .stat-item:hover { border-color: var(--accent); background: #111; }
+        .stat-label { font-size: 11px; color: #555; text-transform: uppercase; font-family: 'JetBrains Mono'; }
+        .stat-value { font-size: 28px; font-weight: 700; display: block; margin-top: 5px; }
+
+        /* Gallery */
+        .evidence-title { font-family: 'Outfit'; font-size: 32px; margin-bottom: 30px; color: #fff; text-transform: uppercase; }
+        .evidence-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(450px, 1fr)); gap: 30px; }
+        .evidence-card { background: var(--card); border: 1px solid #1a1a1a; border-radius: 12px; overflow: hidden; transition: 0.4s; }
+        .evidence-card:hover { border-color: var(--danger); transform: scale(1.02); }
+        .evidence-card img { width: 100%; height: auto; border-bottom: 1px solid #1a1a1a; }
+        .evidence-info { padding: 20px; }
+        .evidence-info h4 { color: var(--accent); font-family: 'JetBrains Mono'; margin-bottom: 8px; }
+
         .full-width { grid-column: 1 / -1; }
 
-        /* Footer lâche */
         .coward-box { 
-            background: linear-gradient(45deg, #ff003c22, transparent);
-            border: 1px solid var(--danger);
-            padding: 40px;
-            text-align: center;
-            margin-top: 60px;
-            border-radius: 4px;
+            background: #000; border: 1px dashed var(--danger); padding: 50px; text-align: center; margin-top: 60px; 
         }
+        .coward-box h2 { color: var(--danger); font-size: 40px; font-family: 'Outfit'; margin-bottom: 10px; }
 
-        .coward-box h2 { color: var(--danger); margin-bottom: 15px; font-family: 'Outfit'; }
+        footer { text-align: center; padding: 60px; color: #222; font-family: 'JetBrains Mono'; font-size: 11px; }
 
-        footer { text-align: center; margin-top: 80px; padding: 40px; color: #333; font-family: 'JetBrains Mono'; font-size: 12px; }
-
-        /* Responsive */
-        @media (max-width: 600px) {
-            .evidence-grid { grid-template-columns: 1fr; }
-        }
+        @media (max-width: 600px) { .evidence-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
 
 <div class="container">
     <header>
-        <p class="alert-tag">[ ANALYSE DE FRAUDE : ACTIVÉE ]</p>
-        <h1>LE REFUGE : <br><span>ARNAQUE TOTALE</span></h1>
-        <p style="color: #666; margin-top: 10px;">Dossier d'exposition du fondateur <strong>@404db</strong> (ID: 5347389601)</p>
+        <p class="alert-tag">[ ACCÈS DOSSIER : @404db ]</p>
+        <h1>LE REFUGE : <br><span>SYSTEM ARNAQUE</span></h1>
+        <p style="color: #666; margin-top: 15px;">Dossier centralisé sur l'ID <strong>5347389601</strong></p>
     </header>
 
-    <div class="stats-grid">
-        <div class="stat-item">
-            <span class="stat-label">Coffre Groupe</span>
-            <span class="stat-value">10 000 R$</span>
-        </div>
-        <div class="stat-item">
-            <span class="stat-label">Dons Reçus</span>
-            <span class="stat-value">3 000 R$</span>
-        </div>
-        <div class="stat-item">
-            <span class="stat-label">Payé au Staff</span>
-            <span class="stat-value" style="color: var(--danger);">0 R$ (VOL)</span>
-        </div>
-        <div class="stat-item">
-            <span class="stat-label">Action Fondateur</span>
-            <span class="stat-value" style="color: var(--danger);">FUITE</span>
-        </div>
+    <div class="testimony-section">
+        <h2>Témoignage d'un ancien développeur</h2>
+        <p style="font-style: italic; color: #eee; font-size: 18px; margin-bottom: 15px;">
+            "404 c'est un manipulateur, il manipule les gens pour travailler pour lui, lui à faim quand c'est terminer il ban et vire les builders et scripteurs... bref c'est un fdp."
+        </p>
+        <img src="https://media.discordapp.net/attachments/1451746097121722418/1464755589044506737/image.png?ex=69769f72&is=69754df2&hm=553f5b0353802ec413d8b9fc19ccb4b673b5daf720ae65f49545e2ac8bf18090&=&format=webp&quality=lossless" class="testimony-img" alt="Preuve Témoignage">
     </div>
 
-    <h2 class="evidence-title">GALERIE DES PREUVES</h2>
+    <div class="stats-grid">
+        <div class="stat-item"><span class="stat-label">Coffre Groupe</span><span class="stat-value">10 000 R$</span></div>
+        <div class="stat-item"><span class="stat-label">Dons Reçus</span><span class="stat-value">3 000 R$</span></div>
+        <div class="stat-item" style="border-left: 4px solid var(--danger);"><span class="stat-label">Dû au staff</span><span class="stat-value" style="color: var(--danger);">100% VOLÉ</span></div>
+    </div>
+
+    <h2 class="evidence-title">Archives des Preuves</h2>
 
     <div class="evidence-grid">
         <div class="evidence-card">
-            <img src="https://media.discordapp.net/attachments/1451746097121722418/1464668556124750016/image.png?ex=69764e64&is=6974fce4&hm=e3b18b497ada7b015352d6bc6268095316a26e38f3351ac14b564f66d0f543d4&=&format=webp&quality=lossless" alt="Preuve">
-            <div class="evidence-info">
-                <h4>FILE_01 : DÉBUT DE L'EXPLOITATION</h4>
-                <p>Analyse des premiers échanges montrant la mise en place du système sans intention de paiement.</p>
-            </div>
+            <img src="https://media.discordapp.net/attachments/1451746097121722418/1464668556124750016/image.png?format=webp&quality=lossless">
+            <div class="evidence-info"><h4>LOG_01 : EXPLOITATION</h4><p>Mise en place du système de travail gratuit.</p></div>
         </div>
-
         <div class="evidence-card">
-            <img src="https://media.discordapp.net/attachments/1451746097121722418/1464668910640173252/image.png?ex=69764eb8&is=6974fd38&hm=f09796c9ad5f4571bb54852336484db98c2c9720b116abd74047331b116bb17d&=&format=webp&quality=lossless" alt="Preuve">
-            <div class="evidence-info">
-                <h4>FILE_02 : MANIPULATION DES REVENUS</h4>
-                <p>Confirmation que les fonds étaient perçus mais immédiatement détournés par le fondateur.</p>
-            </div>
+            <img src="https://media.discordapp.net/attachments/1451746097121722418/1464668910640173252/image.png?format=webp&quality=lossless">
+            <div class="evidence-info"><h4>LOG_02 : DÉTOURNEUR</h4><p>Détournement des fonds dès réception.</p></div>
         </div>
-
         <div class="evidence-card">
-            <img src="https://media.discordapp.net/attachments/1451746097121722418/1464675035770916937/image.png?ex=6976546c&is=697502ec&hm=871360819baf4d5b6a015c608a025cf0ef6bcbfb57974ff447970587354f66bd&=&format=webp&quality=lossless" alt="Preuve">
-            <div class="evidence-info">
-                <h4>FILE_03 : PREUVE DE MAUVAISE FOI</h4>
-                <p>L'obsession pour le profit immédiat au détriment du respect des collaborateurs.</p>
-            </div>
+            <img src="https://media.discordapp.net/attachments/1451746097121722418/1464675035770916937/image.png?format=webp&quality=lossless">
+            <div class="evidence-info"><h4>LOG_03 : MAUVAISE FOI</h4><p>Preuve d'absence totale d'éthique.</p></div>
         </div>
-
         <div class="evidence-card">
-            <img src="https://media.discordapp.net/attachments/1451746097121722418/1464675036030828748/image.png?ex=6976546c&is=697502ec&hm=81fddc55e60c4da67cbf34174ed0768c379a76dbc8012fa771db754a0a0a836b&=&format=webp&quality=lossless" alt="Preuve">
-            <div class="evidence-info">
-                <h4>FILE_04 : LE MENSONGE FINAL</h4>
-                <p>Capture flagrante montrant les fausses promesses juste avant la clôture du projet.</p>
-            </div>
+            <img src="https://media.discordapp.net/attachments/1451746097121722418/1464675036030828748/image.png?format=webp&quality=lossless">
+            <div class="evidence-info"><h4>LOG_04 : TRAHISON</h4><p>Mensonges confirmés avant l'exclusion du staff.</p></div>
         </div>
-
         <div class="evidence-card full-width">
-            <img src="https://media.discordapp.net/attachments/1451746097121722418/1464675036333080821/image.png?ex=6976546d&is=697502ed&hm=c45f0e76850a82b07bc4034c9d2d62202aa8db152c781db3183be91a74571c1f&=&format=webp&quality=lossless" alt="Preuve">
-            <div class="evidence-info">
-                <h4>FILE_05 : L'ABUS DE CONFIANCE</h4>
-                <p>Dernier échange documenté avant que @404db ne décide de bannir tout le monde pour s'enfuir avec les Robux.</p>
-            </div>
+            <img src="https://media.discordapp.net/attachments/1451746097121722418/1464675036333080821/image.png?format=webp&quality=lossless">
+            <div class="evidence-info"><h4>LOG_05 : L'ACTE FINAL</h4><p>Dernier échange avant la suppression lâche du groupe.</p></div>
         </div>
     </div>
 
     <div class="coward-box">
-        <h2>UN FONDATEUR SANS HONNEUR</h2>
-        <p>Après avoir volé le travail de ses développeurs, <strong>@404db a supprimé son groupe</strong>. Il a eu peur d'assumer, alors il a tout effacé. Mais les preuves restent ici.</p>
+        <h2>FONDATION DÉTRUITE PAR LA PEUR</h2>
+        <p>Le groupe a été supprimé parce qu'il ne pouvait pas assumer ce qu'il a fait. @404db est en fuite.</p>
     </div>
 
-    <footer>
-        BASE DE DONNÉES ANTI-SCAM | LE REFUGE ARNAQUE | SITE PROTÉGÉ
-    </footer>
+    <footer>BLACKLIST PUBLIQUE | LE REFUGE ARNAQUE | 2026</footer>
 </div>
 
 </body>
