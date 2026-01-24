@@ -5,142 +5,163 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RAPPORT D'EXPOSITION | LE REFUGE</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700;800&display=swap');
 
         :root {
-            --bg: #0a0a0a;
-            --card: #141414;
-            --accent: #ff3333;
-            --text: #ffffff;
-            --grey: #888888;
-            --border: #222222;
+            --bg: #050505;
+            --surface: #0f0f12;
+            --border: #1f1f23;
+            --accent: #ff4141;
+            --text-main: #ffffff;
+            --text-dim: #a1a1aa;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { 
-            background: var(--bg); 
-            color: var(--text); 
-            font-family: 'Inter', sans-serif; 
+            background-color: var(--bg); 
+            color: var(--text-main); 
+            font-family: 'Plus Jakarta Sans', sans-serif;
             padding: 20px;
-            line-height: 1.6;
         }
 
-        .container { max-width: 1000px; margin: 0 auto; }
+        .main-container { max-width: 850px; margin: 50px auto; }
 
-        /* Header */
-        header { 
-            text-align: center; 
-            padding: 50px 0; 
-            border-bottom: 1px solid var(--border);
-            margin-bottom: 40px;
-        }
-        h1 { font-size: 45px; font-weight: 900; letter-spacing: -2px; text-transform: uppercase; }
-        h1 span { color: var(--accent); }
-        .target-info { color: var(--grey); font-size: 14px; margin-top: 10px; }
-
-        /* Stats */
-        .stats { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
-            gap: 20px; 
-            margin-bottom: 40px; 
-        }
-        .stat-card { 
-            background: var(--card); 
-            padding: 25px; 
-            border-radius: 12px; 
+        /* Header Card */
+        .header-card {
+            background: var(--surface);
             border: 1px solid var(--border);
+            padding: 40px;
+            border-radius: 24px;
+            margin-bottom: 24px;
             text-align: center;
         }
-        .stat-card h3 { font-size: 12px; color: var(--grey); text-transform: uppercase; margin-bottom: 10px; }
-        .stat-card p { font-size: 24px; font-weight: 700; }
 
-        /* Témoignage */
-        .testimony-container { 
-            background: #1a1010; 
-            border: 1px solid var(--accent); 
-            padding: 30px; 
-            border-radius: 15px; 
-            margin-bottom: 50px;
+        .badge {
+            background: rgba(255, 65, 65, 0.1);
+            color: var(--accent);
+            padding: 6px 12px;
+            border-radius: 100px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
-        .testimony-container h2 { color: var(--accent); margin-bottom: 15px; font-size: 22px; }
-        .testimony-text { font-style: italic; font-size: 18px; margin-bottom: 20px; color: #ffcccc; }
-        .testimony-img img { width: 100%; border-radius: 10px; border: 1px solid #441111; }
 
-        /* Galerie de preuves */
-        .evidence-grid { 
-            display: flex; 
-            flex-direction: column; 
-            gap: 40px; 
+        h1 { font-size: 38px; font-weight: 800; margin: 15px 0; letter-spacing: -1px; }
+        h1 span { color: var(--accent); }
+
+        /* Stats */
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-bottom: 32px;
         }
-        .evidence-item { 
-            background: var(--card); 
-            border-radius: 15px; 
+
+        .stat-item {
+            background: var(--surface);
             border: 1px solid var(--border);
+            padding: 20px;
+            border-radius: 16px;
+            text-align: center;
+        }
+
+        .stat-item span { display: block; color: var(--text-dim); font-size: 13px; margin-bottom: 5px; }
+        .stat-item b { font-size: 20px; }
+
+        /* Testimony Section */
+        .section-label { font-size: 14px; font-weight: 700; color: var(--accent); margin-bottom: 16px; display: block; text-transform: uppercase; }
+        
+        .testimony-box {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-left: 4px solid var(--accent);
+            padding: 30px;
+            border-radius: 16px;
+            margin-bottom: 40px;
+        }
+
+        .testimony-box p { font-size: 17px; font-style: italic; color: #efeff1; margin-bottom: 20px; line-height: 1.6; }
+        
+        /* Evidence Layout */
+        .evidence-list { display: flex; flex-direction: column; gap: 24px; }
+        
+        .evidence-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 20px;
             overflow: hidden;
         }
-        .evidence-header { padding: 15px 20px; background: #1c1c1c; font-weight: 700; font-size: 14px; color: var(--accent); }
-        .evidence-item img { width: 100%; height: auto; display: block; }
 
-        footer { text-align: center; padding: 60px 0; color: #444; font-size: 12px; text-transform: uppercase; }
-
-        @media (max-width: 600px) {
-            h1 { font-size: 30px; }
+        .evidence-card img {
+            width: 100%;
+            display: block;
+            border-bottom: 1px solid var(--border);
+            background: #111; /* Fallback color */
+            min-height: 200px;
         }
+
+        .evidence-label { padding: 15px 20px; font-size: 13px; font-weight: 700; color: var(--text-dim); }
+
+        footer { text-align: center; margin-top: 60px; color: #444; font-size: 12px; }
+
+        @media (max-width: 600px) { h1 { font-size: 28px; } }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <header>
-        <h1>Le Refuge : <span>ARNAQUE EXPOSÉE</span></h1>
-        <p class="target-info">Utilisateur : @404db | ID : 5347389601</p>
-    </header>
-
-    <div class="stats">
-        <div class="stat-card"><h3>Coffre Groupe</h3><p>10 000 R$</p></div>
-        <div class="stat-card"><h3>Dons Jeu</h3><p>3 000 R$</p></div>
-        <div class="stat-card" style="border-color: var(--accent);"><h3>Payé au staff</h3><p style="color: var(--accent);">0 R$</p></div>
+<div class="main-container">
+    <div class="header-card">
+        <span class="badge">Alerte Communauté Roblox</span>
+        <h1>Le Refuge : <span>Arnaque & Vols</span></h1>
+        <p style="color: var(--text-dim);">Dossier à l'encontre de <strong>@404db</strong> (ID: 5347389601)</p>
     </div>
 
-    <div class="testimony-container">
-        <h2>Témoignage de 67'zLeGrinch</h2>
-        <p class="testimony-text">"404 c'est un manipulateur, il manipule les jens pour travarier pour lui lui à fain quant inest teriner il ban et vire et c'et builder et script ur bref c'un fdp."</p>
-        <div class="testimony-img">
-            <img src="https://media.discordapp.net/attachments/1451746097121722418/1464755589044506737/image.png?format=webp&quality=lossless" alt="Preuve Témoignage">
-        </div>
+    <div class="stats-row">
+        <div class="stat-item"><span>Budget Total</span><b>13 000 R$</b></div>
+        <div class="stat-item"><span>Payé au Staff</span><b style="color: var(--accent);">0 R$</b></div>
+        <div class="stat-item"><span>Statut Fondateur</span><b>DISPARU</b></div>
     </div>
 
-    <h2 style="margin-bottom: 20px; font-size: 28px;">Dossier de Preuves</h2>
-
-    <div class="evidence-grid">
-        <div class="evidence-item">
-            <div class="evidence-header">PREUVE #1</div>
-            <img src="https://media.discordapp.net/attachments/1451746097121722418/1464668556124750016/image.png?format=webp&quality=lossless">
-        </div>
-
-        <div class="evidence-item">
-            <div class="evidence-header">PREUVE #2</div>
-            <img src="https://media.discordapp.net/attachments/1451746097121722418/1464668910640173252/image.png?format=webp&quality=lossless">
-        </div>
-
-        <div class="evidence-item">
-            <div class="evidence-header">PREUVE #3</div>
-            <img src="https://media.discordapp.net/attachments/1451746097121722418/1464675035770916937/image.png?format=webp&quality=lossless">
-        </div>
-
-        <div class="evidence-item">
-            <div class="evidence-header">PREUVE #4</div>
-            <img src="https://media.discordapp.net/attachments/1451746097121722418/1464675036030828748/image.png?format=webp&quality=lossless">
-        </div>
-
-        <div class="evidence-item">
-            <div class="evidence-header">PREUVE #5 (FINALE)</div>
-            <img src="https://media.discordapp.net/attachments/1451746097121722418/1464675036333080821/image.png?format=webp&quality=lossless">
+    <span class="section-label">Témoignage de 67'zLeGrinch</span>
+    <div class="testimony-box">
+        <p>"404 c'est un manipulateur, il manipule les jens pour travarier pour lui lui à fain quant inest teriner il ban et vire et c'et builder et script ur bref c'un fdp."</p>
+        <div class="evidence-card">
+            <img src="https://media.discordapp.net/attachments/1451746097121722418/1464755589044506737/image.png?format=webp" alt="Preuve Témoignage">
         </div>
     </div>
 
-    <footer>Dossier public de mise en garde contre @404db - 2026</footer>
+    <span class="section-label">Dossier de preuves photographiques</span>
+    <div class="evidence-list">
+        <div class="evidence-card">
+            <img src="https://media.discordapp.net/attachments/1451746097121722418/1464668556124750016/image.png?format=webp">
+            <div class="evidence-label">PREUVE #01 - EXPLOITATION</div>
+        </div>
+
+        <div class="evidence-card">
+            <img src="https://media.discordapp.net/attachments/1451746097121722418/1464668910640173252/image.png?format=webp">
+            <div class="evidence-label">PREUVE #02 - MANIPULATION</div>
+        </div>
+
+        <div class="evidence-card">
+            <img src="https://media.discordapp.net/attachments/1451746097121722418/1464675035770916937/image.png?format=webp">
+            <div class="evidence-label">PREUVE #03 - MAUVAISE FOI</div>
+        </div>
+
+        <div class="evidence-card">
+            <img src="https://media.discordapp.net/attachments/1451746097121722418/1464675036030828748/image.png?format=webp">
+            <div class="evidence-label">PREUVE #04 - MENSONGES</div>
+        </div>
+
+        <div class="evidence-card">
+            <img src="https://media.discordapp.net/attachments/1451746097121722418/1464675036333080821/image.png?format=webp">
+            <div class="evidence-label">PREUVE #05 - ABANDON ET BAN</div>
+        </div>
+    </div>
+
+    <footer>
+        Ce dossier a été constitué pour protéger les créateurs Roblox. 2026.
+    </footer>
 </div>
 
 </body>
