@@ -3,169 +3,152 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alerte Sécurité | 404db</title>
+    <title>NETWORK_EXPOSE // 404DB</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;600;800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Syncopate:wght@700&family=Space+Grotesk:wght@300;500;700&display=swap');
 
         :root {
-            --bg: #0f111a;
-            --glass: rgba(255, 255, 255, 0.03);
-            --border: rgba(255, 255, 255, 0.1);
-            --cyan: #00f2ff;
-            --red: #ff4d4d;
-            --text: #e0e0e0;
+            --primary: #0066ff;
+            --danger: #ff3333;
+            --bg: #f0f2f5;
+            --surface: #ffffff;
+            --text: #1a1a1a;
+            --border: #e0e0e0;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { 
-            background: var(--bg); 
+            background-color: var(--bg); 
             color: var(--text); 
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            line-height: 1.6;
+            font-family: 'Space Grotesk', sans-serif;
             padding: 40px 20px;
         }
 
-        .container { max-width: 900px; margin: 0 auto; }
+        .container { max-width: 1000px; margin: 0 auto; }
 
-        /* Header Futuriste */
+        /* HEADER FUTURISTE PROPRE */
         header { 
-            background: var(--glass);
-            border: 1px solid var(--border);
-            padding: 40px;
-            border-radius: 30px;
-            backdrop-filter: blur(10px);
-            margin-bottom: 30px;
-            text-align: center;
-        }
-        .status-pill {
-            background: rgba(255, 77, 77, 0.2);
-            color: var(--red);
-            padding: 5px 15px;
-            border-radius: 100px;
-            font-size: 12px;
-            font-weight: 800;
-            text-transform: uppercase;
-            border: 1px solid var(--red);
-        }
-        h1 { font-size: 42px; font-weight: 800; margin: 20px 0 10px; letter-spacing: -1px; }
-        h1 span { color: var(--cyan); }
-
-        /* Stats Grid */
-        .stats { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
-            gap: 20px; 
-            margin-bottom: 30px; 
-        }
-        .stat-card { 
-            background: var(--glass); 
-            border: 1px solid var(--border); 
-            padding: 30px; 
-            border-radius: 24px; 
-            text-align: center;
-        }
-        .stat-card span { color: var(--cyan); font-size: 12px; text-transform: uppercase; font-weight: 600; }
-        .stat-card p { font-size: 32px; font-weight: 800; margin-top: 5px; }
-
-        /* Bloc Analyse : Trahison & Fuite */
-        .analysis {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid var(--border);
-            padding: 40px;
-            border-radius: 30px;
-            margin-bottom: 30px;
-        }
-        .analysis h2 { color: var(--cyan); margin-bottom: 20px; font-size: 20px; }
-        .analysis p { font-size: 17px; margin-bottom: 20px; color: #b0b0b0; }
-        .highlight { color: #fff; font-weight: 600; border-bottom: 2px solid var(--red); }
-
-        /* Témoignage */
-        .quote-box {
-            border-left: 4px solid var(--cyan);
-            padding: 20px 40px;
-            margin: 40px 0;
-            background: rgba(0, 242, 255, 0.05);
-        }
-        .quote-box blockquote { font-size: 20px; font-style: italic; color: #fff; }
-
-        /* Chat Logs Moderne */
-        .logs-box { 
-            background: var(--glass); 
-            border-radius: 30px; 
-            border: 1px solid var(--border);
-            padding: 30px;
-        }
-        .log-item { 
-            padding: 15px; 
-            border-bottom: 1px solid var(--border);
             display: flex;
-            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--text);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
         }
-        .log-item:last-child { border: none; }
-        .log-user { font-size: 12px; font-weight: 800; color: var(--cyan); margin-bottom: 5px; }
-        .log-text { font-size: 15px; color: #d1d1d1; }
+        .logo-area h1 { font-family: 'Syncopate', sans-serif; font-size: 20px; letter-spacing: -1px; }
+        .logo-area span { color: var(--primary); }
+        .version { font-size: 10px; font-weight: 700; background: var(--text); color: #fff; padding: 4px 8px; border-radius: 4px; }
 
-        footer { text-align: center; margin-top: 60px; color: #444; font-size: 12px; }
+        /* GRILLE DE DONNÉES */
+        .data-grid { 
+            display: grid; 
+            grid-template-columns: repeat(3, 1fr); 
+            gap: 20px; 
+            margin-bottom: 40px; 
+        }
+        .card { 
+            background: var(--surface); 
+            padding: 30px; 
+            border-radius: 2px;
+            border: 1px solid var(--border);
+            box-shadow: 10px 10px 0px rgba(0,0,0,0.05);
+        }
+        .card label { font-size: 11px; font-weight: 700; color: var(--primary); text-transform: uppercase; }
+        .card p { font-size: 32px; font-weight: 700; margin-top: 10px; }
+
+        /* ANALYSE CRIMINELLE */
+        .report-box { 
+            background: var(--surface); 
+            border: 1px solid var(--text);
+            padding: 40px;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        .report-box::after {
+            content: "CRIMINAL_RECORD";
+            position: absolute;
+            bottom: 10px;
+            right: 20px;
+            font-size: 10px;
+            color: var(--border);
+        }
+        .report-box h2 { font-family: 'Syncopate', sans-serif; font-size: 16px; margin-bottom: 20px; }
+        .report-box p { font-size: 18px; line-height: 1.5; color: #444; margin-bottom: 20px; }
+        .alert-text { color: var(--danger); font-weight: 700; }
+
+        /* LOGS STYLE CONSOLE */
+        .console-logs { 
+            background: #1a1a1a; 
+            color: #fff; 
+            padding: 30px; 
+            border-radius: 8px;
+            font-family: monospace;
+        }
+        .console-logs h3 { color: var(--primary); font-size: 12px; margin-bottom: 20px; }
+        .line { margin-bottom: 12px; border-bottom: 1px solid #333; padding-bottom: 8px; font-size: 14px; }
+        .user { color: var(--primary); font-weight: bold; margin-right: 10px; }
+
+        /* TÉMOIGNAGE FINAL */
+        .witness-area { 
+            margin-top: 40px;
+            border-left: 5px solid var(--primary);
+            padding: 30px;
+            background: #fff;
+        }
+        .witness-area blockquote { font-size: 22px; font-weight: 300; font-style: italic; }
+
+        @media (max-width: 768px) { .data-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
 
 <div class="container">
     <header>
-        <span class="status-pill">Alerte de Sécurité</span>
-        <h1>L'Arnaque <span>Le Refuge</span></h1>
-        <p>Cible : @404db (5347389601)</p>
+        <div class="logo-area">
+            <h1>ALERT.<span>CENTER</span></h1>
+        </div>
+        <div class="version">DOSSIER #5347389601</div>
     </header>
 
-    <div class="stats">
-        <div class="stat-card">
-            <span>Fond du Groupe Roblox</span>
-            <p>10 000 R$</p>
+    <div class="data-grid">
+        <div class="card">
+            <label>Fond du Groupe Roblox</label>
+            <p>10,000</p>
         </div>
-        <div class="stat-card">
-            <span>Reçu (In-Game)</span>
-            <p>3 000 R$</p>
+        <div class="card">
+            <label>Revenus du Jeu</label>
+            <p>3,000</p>
+        </div>
+        <div class="card" style="border-color: var(--danger);">
+            <label style="color: var(--danger);">Payé à l'équipe</label>
+            <p>0.00</p>
         </div>
     </div>
 
-    <div class="analysis">
-        <h2>Rapport de comportement</h2>
-        <p>Une fois le développement terminé, <span class="highlight">@404db a viré l'intégralité de l'équipe</span>. Il s'est servi de votre confiance et de votre gentillesse uniquement pour obtenir un travail gratuit.</p>
-        <p>Au lieu d'assumer ses responsabilités et de payer le staff, <span class="highlight">il a choisi de fuir la vérité en supprimant le groupe</span> et en coupant tout contact. C'est une manipulation préméditée.</p>
+    <div class="report-box">
+        <h2>COMPTE-RENDU DE TRAHISON</h2>
+        <p>Il est établi que l'utilisateur <strong>@404db</strong> a délibérément exploité la <span class="alert-text">confiance et la gentillesse</span> de son équipe de développement.</p>
+        <p>Dès que le projet a été stabilisé, il a procédé au licenciement total de l'équipe sans aucune compensation. Pour masquer ses actes, au lieu de payer ce qu'il doit, <span class="alert-text">il a supprimé le groupe et fuit ses responsabilités.</span></p>
     </div>
 
-    <div class="quote-box">
+    <div class="witness-area">
+        <label style="color: var(--primary); font-size: 12px; font-weight: 800;">DÉCLARATION DE LE GRINCH</label>
         <blockquote>"404 cest un manipulateur il manipule les gens pour travailler pour lui a la fin quand le tafff est terminer il ban et vire cest builder et scripteur breff c un fdp"</blockquote>
-        <p style="margin-top: 10px; font-size: 13px; color: var(--cyan);">— Témoignage de Le Grinch</p>
     </div>
 
-    <div class="logs-box">
-        <h3 style="margin-bottom: 20px; font-size: 16px; color: var(--cyan);">Logs de conversation extraits :</h3>
-        
-        <div class="log-item">
-            <span class="log-user">404DB</span>
-            <span class="log-text">"salut frérot alors la monétisations on ce partagera directement les robux aprés c'est compliqué on fait aucun robux personne sur le jeux"</span>
-        </div>
-        <div class="log-item">
-            <span class="log-user">404DB</span>
-            <span class="log-text">"hormis les petite donations que l'on a u, rien a pars sa"</span>
-        </div>
-        <div class="log-item">
-            <span class="log-user">404DB</span>
-            <span class="log-text">"La gars faut qu’on rame full monde cmca on se fait un max de robux"</span>
-        </div>
-        <div class="log-item">
-            <span class="log-user">404DB</span>
-            <span class="log-text">"ban le grinche du jeux"</span>
-        </div>
-        <div class="log-item">
-            <span class="log-user">404DB</span>
-            <span class="log-text">"salut j'ai tejj le grinche et q prcq il foute rien etc"</span>
+    <div style="margin-top: 40px;">
+        <div class="console-logs">
+            <h3>LOGS_DE_CONVERSATION_EXTRÉMES</h3>
+            <div class="line"><span class="user">404DB:</span> "salut frérot alors la monétisations on ce partagera directement les robux aprés c'est compliqué on fait aucun robux personne sur le jeux"</div>
+            <div class="line"><span class="user">404DB:</span> "hormis les petite donations que l'on a u, rien a pars sa"</div>
+            <div class="line"><span class="user">404DB:</span> "La gars faut qu’on rame full monde cmca on se fait un max de robux"</div>
+            <div class="line"><span class="user">404DB:</span> "ban le grinche du jeux"</div>
+            <div class="line"><span class="user">404DB:</span> "salut j'ai tejj le grinche et q prcq il foute rien etc"</div>
         </div>
     </div>
 
-    <footer>
-        Dossier de Prévention Roblox — 2026 — Fin de Transmission
+    <footer style="margin-top: 60px; text-align: center; font-size: 11px; opacity: 0.5;">
+        DATABASE_PROTECTION_ROBLOX // 2026 // ANTI-FRAUD UNIT
     </footer>
 </div>
 
