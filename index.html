@@ -3,179 +3,219 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dossier Public | @404db</title>
+    <title>Dossier @404db | EXPOSÉ</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap');
 
         :root {
-            --bg: #03040a;
+            --bg: #020205;
             --accent: #ff3b30;
-            --blue: #007aff;
+            --blue: #00a2ff;
             --glass: rgba(255, 255, 255, 0.03);
-            --glass-border: rgba(255, 255, 255, 0.08);
+            --border: rgba(255, 255, 255, 0.08);
             --text-main: #ffffff;
-            --text-secondary: #94a3b8;
+            --text-dim: #94a3b8;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.3; }
+            50% { opacity: 0.6; }
+            100% { opacity: 0.3; }
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body { 
-            background: radial-gradient(circle at top left, #0f172a, #03040a);
+            background-color: var(--bg);
             color: var(--text-main); 
             font-family: 'Plus Jakarta Sans', sans-serif;
             padding: 60px 20px;
+            overflow-x: hidden;
             line-height: 1.6;
-            min-height: 100vh;
         }
 
-        .container { max-width: 800px; margin: 0 auto; }
-
-        /* Effet de brillance en arrière-plan */
-        .glow {
+        /* Fond animé */
+        .bg-glow {
             position: fixed;
-            top: 0; left: 50%;
-            transform: translateX(-50%);
-            width: 100%; height: 300px;
-            background: radial-gradient(circle, rgba(0, 122, 255, 0.05) 0%, transparent 70%);
-            pointer-events: none;
+            top: -10%; left: -10%;
+            width: 40%; height: 40%;
+            background: radial-gradient(circle, rgba(0, 162, 255, 0.1) 0%, transparent 70%);
+            z-index: -1;
+            animation: pulse 8s infinite ease-in-out;
         }
 
-        header { margin-bottom: 50px; text-align: left; }
+        .container { 
+            max-width: 800px; 
+            margin: 0 auto; 
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        header { margin-bottom: 50px; }
+
         .badge { 
+            display: inline-block;
             background: rgba(255, 59, 48, 0.1); 
             color: var(--accent); 
-            padding: 4px 12px; 
-            border-radius: 8px; 
-            font-size: 12px; 
+            padding: 6px 16px; 
+            border-radius: 50px; 
+            font-size: 11px; 
             font-weight: 800;
-            border: 1px solid rgba(255, 59, 48, 0.2);
             text-transform: uppercase;
-            letter-spacing: 1px;
+            border: 1px solid rgba(255, 59, 48, 0.2);
+            margin-bottom: 20px;
         }
-        h1 { font-size: 40px; font-weight: 800; letter-spacing: -1.5px; margin: 15px 0; }
-        .target-info { color: var(--text-secondary); font-size: 16px; font-weight: 400; }
 
-        /* Grille de stats façon Apple */
+        h1 { font-size: 52px; font-weight: 800; letter-spacing: -2px; line-height: 1; margin-bottom: 10px; }
+        .target { color: var(--text-dim); font-size: 18px; }
+
+        /* Stats avec Hover Animation */
         .stats-grid { 
             display: grid; 
             grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); 
             gap: 20px; 
             margin-bottom: 40px; 
         }
-        .card { 
-            background: var(--glass);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid var(--glass-border);
-            padding: 24px; 
-            border-radius: 20px;
-            transition: transform 0.2s ease;
+        .stat-card { 
+            background: var(--glass); 
+            backdrop-filter: blur(15px);
+            border: 1px solid var(--border);
+            padding: 30px; 
+            border-radius: 24px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        .card:hover { transform: translateY(-5px); border-color: rgba(255,255,255,0.15); }
-        .card span { color: var(--text-secondary); font-size: 13px; font-weight: 600; text-transform: uppercase; }
-        .card p { font-size: 28px; font-weight: 800; margin-top: 8px; color: var(--blue); }
+        .stat-card:hover { 
+            transform: scale(1.05); 
+            border-color: var(--blue);
+            background: rgba(255, 255, 255, 0.05);
+        }
+        .stat-card span { font-size: 12px; font-weight: 600; color: var(--text-dim); text-transform: uppercase; }
+        .stat-card p { font-size: 36px; font-weight: 800; color: var(--blue); margin-top: 5px; }
 
-        /* Bloc Analyse Abus */
-        .analysis {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01));
-            border: 1px solid var(--glass-border);
+        /* Report Box */
+        .report-box {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border);
+            padding: 40px;
+            border-radius: 32px;
+            margin-bottom: 30px;
+            transition: 0.3s;
+        }
+        .report-box:hover { background: rgba(255, 255, 255, 0.03); }
+        .report-box h2 { font-size: 20px; color: var(--accent); margin-bottom: 20px; }
+        .hl { color: #fff; font-weight: 700; border-bottom: 1.5px solid var(--accent); }
+
+        /* Trace Alert Section */
+        .trace-alert {
+            background: linear-gradient(135deg, rgba(0, 162, 255, 0.1), transparent);
+            border: 1px solid rgba(0, 162, 255, 0.2);
             padding: 35px;
-            border-radius: 24px;
+            border-radius: 28px;
             margin-bottom: 40px;
+            animation: float 5s infinite ease-in-out;
         }
-        .analysis h2 { font-size: 22px; color: var(--accent); margin-bottom: 20px; }
-        .analysis p { font-size: 17px; color: #cbd5e1; margin-bottom: 18px; }
-        .important { color: #fff; font-weight: 700; border-bottom: 1px solid var(--accent); }
 
-        /* Témoignage */
-        .testimony-box {
-            padding: 30px;
-            margin-bottom: 40px;
-            border-left: 2px solid var(--blue);
-            background: rgba(0, 122, 255, 0.02);
-        }
-        .testimony-box blockquote { font-size: 19px; font-weight: 600; color: #f8fafc; font-style: italic; }
-        .testimony-box cite { display: block; margin-top: 15px; color: var(--text-secondary); font-style: normal; font-size: 13px; }
-
-        /* Logs de discussion */
-        .logs-container { 
-            background: var(--glass);
-            border: 1px solid var(--glass-border);
-            border-radius: 24px;
+        /* Chat Logs */
+        .logs-container {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 28px;
             overflow: hidden;
         }
-        .log-row { 
-            padding: 20px 25px; 
-            border-bottom: 1px solid var(--glass-border);
-            display: flex;
-            flex-direction: column;
+        .log-item { 
+            padding: 25px; 
+            border-bottom: 1px solid var(--border);
+            transition: 0.3s;
         }
-        .log-row:last-child { border-bottom: none; }
-        .author { color: var(--blue); font-weight: 800; font-size: 12px; margin-bottom: 6px; text-transform: uppercase; }
-        .message { font-size: 15px; color: #e2e8f0; }
+        .log-item:hover { background: rgba(255, 255, 255, 0.02); padding-left: 35px; }
+        .author { color: var(--blue); font-weight: 800; font-size: 11px; text-transform: uppercase; margin-bottom: 8px; display: block; }
+        .msg { font-size: 16px; color: #cbd5e1; }
 
-        footer { text-align: center; margin-top: 60px; color: #475569; font-size: 12px; font-weight: 600; }
+        footer { text-align: center; margin-top: 80px; color: #334155; font-size: 12px; letter-spacing: 3px; }
 
-        @media (max-width: 600px) { h1 { font-size: 32px; } }
+        @media (max-width: 600px) { h1 { font-size: 38px; } }
     </style>
 </head>
 <body>
 
-<div class="glow"></div>
+<div class="bg-glow"></div>
 
 <div class="container">
     <header>
-        <span class="badge">Alerte Communautaire</span>
-        <h1>Exposition : Le Refuge</h1>
-        <p class="target-info">Utilisateur concerné : <strong>@404db</strong> (ID: 5347389601)</p>
+        <span class="badge">Dossier de Cyber-Fraude</span>
+        <h1>La Chute du Refuge.</h1>
+        <p class="target">Analyse technique de l'utilisateur <strong>@404db</strong></p>
     </header>
 
     <div class="stats-grid">
-        <div class="card">
-            <span>Fond du Groupe Roblox</span>
+        <div class="stat-card">
+            <span>Fond du Groupe</span>
             <p>10 000 R$</p>
         </div>
-        <div class="card">
-            <span>Donations Reçues</span>
+        <div class="stat-card">
+            <span>Revenus du Jeu</span>
             <p>3 000 R$</p>
         </div>
     </div>
 
-    <div class="analysis">
-        <h2>Abus de confiance & Fuite</h2>
-        <p>Il est officiellement établi que <span class="important">@404db</span> a délibérément manipulé son équipe en utilisant leur <span class="important">gentillesse et leur confiance</span> pour obtenir un développement complet sans frais.</p>
-        <p>Une fois le travail livré, il a choisi de ne verser aucun salaire, de <span class="important">supprimer le groupe</span> et de fuir ses responsabilités pour ne pas avoir à assumer la vérité.</p>
+    <div class="report-box">
+        <h2>Abus de confiance & Manipulation</h2>
+        <p>L'individu <span class="hl">@404db</span> a orchestré une exploitation préméditée. En s'appuyant sur la <span class="hl">gentillesse et la confiance</span> de ses développeurs, il a obtenu un projet clé en main avant de bannir l'intégralité du staff.</p>
+        <p style="margin-top: 15px;">Une fois son but atteint, il a <span class="hl">supprimé le groupe</span> pour éviter toute confrontation.</p>
     </div>
 
-    <div class="testimony-box">
-        <blockquote>"404 cest un manipulateur il manipule les gens pour travailler pour lui a la fin quand le tafff est terminer il ban et vire cest builder et scripteur breff c un fdp"</blockquote>
-        <cite>— Témoignage certifié de Le Grinch</cite>
+    <div class="trace-alert">
+        <h3 style="color: var(--blue); margin-bottom: 15px;">Tentative d'effacement échouée</h3>
+        <p>Pensant supprimer les preuves en <span class="hl">supprimant son jeu</span>, @404db a ignoré la réactivité de la communauté. L'intégralité du dossier a été relayée sur :</p>
+        <ul style="margin-top: 15px; list-style: none; display: flex; gap: 10px; flex-wrap: wrap;">
+            <li>🔹 Forums Officiels</li>
+            <li>🔹 Twitter / X</li>
+            <li>🔹 Networks Dev</li>
+        </ul>
+    </div>
+
+    <div class="report-box" style="border-left: 4px solid var(--blue); background: rgba(0, 162, 255, 0.02);">
+        <p style="font-style: italic; font-size: 20px; color: #fff;">
+            "404 cest un manipulateur il manipule les gens pour travailler pour lui a la fin quand le tafff est terminer il ban et vire cest builder et scripteur breff c un fdp"
+        </p>
+        <cite style="display: block; margin-top: 15px; color: var(--blue); font-size: 13px; font-weight: 700;">— LE GRINCH</cite>
     </div>
 
     <div class="logs-container">
-        <div class="log-row">
-            <span class="author">404db</span>
-            <p class="message">"salut frérot alors la monétisations on ce partagera directement les robux aprés c'est compliqué on fait aucun robux personne sur le jeux"</p>
+        <div class="log-item">
+            <span class="author">Capture #01</span>
+            <p class="msg">"salut frérot alors la monétisations on ce partagera directement les robux aprés c'est compliqué on fait aucun robux personne sur le jeux"</p>
         </div>
-        <div class="log-row">
-            <span class="author">404db</span>
-            <p class="message">"hormis les petite donations que l'on a u, rien a pars sa"</p>
+        <div class="log-item">
+            <span class="author">Capture #02</span>
+            <p class="msg">"hormis les petite donations que l'on a u, rien a pars sa"</p>
         </div>
-        <div class="log-row" style="background: rgba(255, 255, 255, 0.01);">
-            <span class="author">404db</span>
-            <p class="message" style="color: #fff; font-weight: 600;">"La gars faut qu’on rame full monde cmca on se fait un max de robux"</p>
+        <div class="log-item" style="background: rgba(0, 162, 255, 0.05);">
+            <span class="author">Capture #03 (AVEU)</span>
+            <p class="msg" style="color: #fff; font-weight: 700;">"La gars faut qu’on rame full monde cmca on se fait un max de robux"</p>
         </div>
-        <div class="log-row">
-            <span class="author">404db</span>
-            <p class="message">"ban le grinche du jeux"</p>
+        <div class="log-item">
+            <span class="author">Action Système</span>
+            <p class="msg">"ban le grinche du jeux"</p>
         </div>
-        <div class="log-row">
-            <span class="author">404db</span>
-            <p class="message">"salut j'ai tejj le grinche et q prcq il foute rien etc"</p>
+        <div class="log-item">
+            <span class="author">Capture #04</span>
+            <p class="msg">"salut j'ai tejj le grinche et q prcq il foute rien etc"</p>
         </div>
     </div>
 
-    <footer>DOSSIER ANTI-FRAUDE — ROBLOX 2026</footer>
+    <footer>PUBLISHED BY COMMUNITY PROTECT // 2026</footer>
 </div>
 
 </body>
