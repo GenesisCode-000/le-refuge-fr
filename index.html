@@ -3,122 +3,133 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ALERTE : 404DB EXPOSÉ</title>
+    <title>EXPOSÉ : L'AFFAIRE LE REFUGE</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;800&family=Playfair+Display:ital,wght@1,700&display=swap');
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             background-color: #000;
             color: #fff;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            overflow-x: hidden;
-            padding: 40px 20px;
+            font-family: 'Outfit', sans-serif;
+            line-height: 1.6;
+            padding: 60px 20px;
         }
 
-        .container { max-width: 900px; margin: 0 auto; }
+        .wrapper { max-width: 850px; margin: 0 auto; }
 
-        /* HEADER IMPACTANT */
-        .hero { margin-bottom: 80px; }
-        .hero span { color: #ff3b30; font-weight: 300; text-transform: uppercase; letter-spacing: 4px; font-size: 14px; }
-        .hero h1 { font-size: clamp(40px, 10vw, 85px); font-weight: 800; line-height: 0.9; margin-top: 10px; }
+        /* HEADER EDITORIAL */
+        header { border-bottom: 1px solid #1a1a1a; padding-bottom: 40px; margin-bottom: 60px; }
+        .red-label { color: #ff3b30; font-weight: 800; font-size: 12px; text-transform: uppercase; letter-spacing: 5px; }
+        h1 { font-size: clamp(40px, 8vw, 70px); font-weight: 800; letter-spacing: -2px; line-height: 1; margin: 15px 0; }
+        .target-id { color: #444; font-size: 14px; font-weight: 300; }
 
-        /* GRANDS CHIFFRES */
-        .numbers { 
-            display: flex; 
-            gap: 40px; 
+        /* CHIFFRES CLÉS */
+        .grid-data { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+            gap: 30px; 
             margin-bottom: 80px; 
-            border-top: 1px solid #1a1a1a; 
-            padding-top: 40px; 
         }
-        .n-card b { display: block; font-size: 48px; font-weight: 800; color: #ff3b30; }
-        .n-card span { color: #555; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; }
+        .data-card b { display: block; font-size: 42px; font-weight: 800; color: #fff; }
+        .data-card span { color: #ff3b30; font-size: 11px; text-transform: uppercase; letter-spacing: 2px; }
 
-        /* TÉMOIGNAGE STYLE MODERNE */
-        .witness { 
+        /* ANALYSE DE L'ABUS */
+        .abuse-analysis { 
+            margin-bottom: 80px; 
             background: #080808; 
-            padding: 50px; 
-            border-radius: 40px; 
-            margin-bottom: 80px;
-            border: 1px solid #111;
+            padding: 40px; 
+            border-radius: 4px;
+            border-left: 2px solid #ff3b30;
         }
-        .witness h2 { font-size: 14px; color: #555; text-transform: uppercase; margin-bottom: 30px; }
-        .witness p { font-size: 24px; font-weight: 300; line-height: 1.4; color: #eee; }
+        .abuse-analysis h2 { font-size: 14px; color: #555; text-transform: uppercase; margin-bottom: 20px; }
+        .abuse-analysis p { font-size: 22px; font-weight: 300; color: #ccc; }
+        .highlight { color: #fff; font-weight: 700; }
 
-        /* LOGS DE CHAT ÉPURÉS */
-        .logs-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
-        .chat-line { 
-            padding: 25px; 
-            background: #050505; 
-            border-bottom: 1px solid #111;
-            transition: 0.3s;
+        /* TÉMOIGNAGE CHOC */
+        .witness-quote { margin-bottom: 80px; text-align: center; }
+        .witness-quote blockquote { 
+            font-family: 'Playfair Display', serif; 
+            font-size: clamp(24px, 5vw, 36px); 
+            font-style: italic; 
+            color: #fff; 
+            margin-bottom: 20px;
+            line-height: 1.2;
         }
-        .chat-line:hover { background: #0a0a0a; }
-        .user { color: #ff3b30; font-size: 12px; font-weight: 800; text-transform: uppercase; margin-bottom: 8px; display: block; }
-        .txt { font-size: 16px; color: #aaa; }
+        .witness-quote cite { color: #555; font-size: 14px; text-transform: uppercase; letter-spacing: 2px; }
 
-        footer { margin-top: 100px; text-align: center; color: #222; font-size: 12px; }
+        /* LOGS DE CHAT */
+        .chat-container { display: flex; flex-direction: column; gap: 15px; }
+        .log-row { background: #050505; padding: 25px; border: 1px solid #0f0f0f; }
+        .user-name { color: #ff3b30; font-size: 11px; font-weight: 800; margin-bottom: 10px; display: block; }
+        .message-text { font-size: 16px; color: #888; }
 
-        @media (max-width: 600px) {
-            .numbers { flex-direction: column; }
-            .hero h1 { font-size: 50px; }
-        }
+        footer { margin-top: 100px; text-align: center; color: #1a1a1a; font-size: 11px; letter-spacing: 2px; }
+
+        @media (max-width: 600px) { h1 { font-size: 45px; } .grid-data { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <div class="hero">
-        <span>Dossier de Fraude</span>
-        <h1>LE REFUGE<br>404DB.</h1>
+<div class="wrapper">
+    <header>
+        <span class="red-label">Rapport de Fraude 2026</span>
+        <h1>L'arnaque <br>du Refuge.</h1>
+        <p class="target-id">CIBLE : @404DB (ID: 5347389601)</p>
+    </header>
+
+    <div class="grid-data">
+        <div class="data-card">
+            <b>10,000 R$</b>
+            <span>Coffre Groupe</span>
+        </div>
+        <div class="data-card">
+            <b>3,000 R$</b>
+            <span>Dons In-Game</span>
+        </div>
+        <div class="data-card">
+            <b>0 R$</b>
+            <span>Payé à l'équipe</span>
+        </div>
     </div>
 
-    <div class="numbers">
-        <div class="n-card">
-            <b>10,000</b>
-            <span>Robux Groupe</span>
-        </div>
-        <div class="n-card">
-            <b>3,000</b>
-            <span>Dons Volés</span>
-        </div>
-        <div class="n-card">
-            <b>0</b>
-            <span>Payé au Staff</span>
-        </div>
+    <div class="abuse-analysis">
+        <h2>Analyse de la trahison</h2>
+        <p>Une fois le développement terminé, <span class="highlight">@404db a viré toute l'équipe</span>. Comme l'a confirmé le Grinch, ce fondateur s'est servi de votre <span class="highlight">confiance</span> et de votre <span class="highlight">gentillesse</span> pour obtenir un travail gratuit avant de supprimer les accès.</p>
     </div>
 
-    <div class="witness">
-        <h2>Témoignage de Le Grinch</h2>
-        <p>"404 cest un manipulateur il manipule les gens pour travailler pour lui a la fin quand le tafff est terminer il ban et vire cest builder et scripteur breff c un fdp"</p>
+    <div class="witness-quote">
+        <span class="red-label">Le Grinch témoigne</span>
+        <blockquote>"404 cest un manipulateur il manipule les gens pour travailler pour lui a la fin quand le tafff est terminer il ban et vire cest builder et scripteur breff c un fdp"</blockquote>
+        <cite>— Ancien membre de l'équipe bannie</cite>
     </div>
 
-    <div class="logs-grid">
-        <div class="chat-line">
-            <span class="user">404db</span>
-            <p class="txt">"salut frérot alors la monétisations on ce partagera directement les robux aprés c'est compliqué on fait aucun robux personne sur le jeux"</p>
+    <div class="chat-container">
+        <div class="log-row">
+            <span class="user-name">404DB</span>
+            <p class="message-text">"salut frérot alors la monétisations on ce partagera directement les robux aprés c'est compliqué on fait aucun robux personne sur le jeux"</p>
         </div>
-        <div class="chat-line">
-            <span class="user">404db</span>
-            <p class="txt">"hormis les petite donations que l'on a u, rien a pars sa"</p>
+        <div class="log-row">
+            <span class="user-name">404DB</span>
+            <p class="message-text">"hormis les petite donations que l'on a u, rien a pars sa"</p>
         </div>
-        <div class="chat-line">
-            <span class="user">404db</span>
-            <p class="txt">"La gars faut qu’on rame full monde cmca on se fait un max de robux"</p>
+        <div class="log-row" style="background: #0a0a0a; border-color: #222;">
+            <span class="user-name">404DB</span>
+            <p class="message-text" style="color: #fff;">"La gars faut qu’on rame full monde cmca on se fait un max de robux"</p>
         </div>
-        <div class="chat-line">
-            <span class="user">404db</span>
-            <p class="txt">"ban le grinche du jeux"</p>
+        <div class="log-row">
+            <span class="user-name">404DB</span>
+            <p class="message-text">"ban le grinche du jeux"</p>
         </div>
-        <div class="chat-line" style="border-bottom: none;">
-            <span class="user">404db</span>
-            <p class="txt">"salut j'ai tejj le grinche et q prcq il foute rien etc"</p>
+        <div class="log-row">
+            <span class="user-name">404DB</span>
+            <p class="message-text">"salut j'ai tejj le grinche et q prcq il foute rien etc"</p>
         </div>
     </div>
 
     <footer>
-        NO DATA IMAGES — SECURE TEXT ONLY — 2026
+        BASE DE DONNÉES ANTI-SCAM — AUCUNE IMAGE — TEXTE SÉCURISÉ
     </footer>
 </div>
 
